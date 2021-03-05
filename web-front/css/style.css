@@ -1,0 +1,36 @@
+html {
+    font-size: 100px;   
+}
+
+body {
+    margin: 0px;
+}
+
+/* --------------------------------------------------- */
+
+#header {
+    height: 4.5rem;
+    font-size: 30px;
+    background-color: red;
+}
+
+#header>#div {
+    height: 1rem;
+    font-size: 10px;
+    background-color: turquoise;
+}
+
+#visual {
+    height: 171px;
+    background-color: coral;
+}
+
+#body {
+    min-height: 300px;
+    background-color: yellow;
+}
+
+#footer {
+    height: 100px;
+    background-color: darkblue;
+}
