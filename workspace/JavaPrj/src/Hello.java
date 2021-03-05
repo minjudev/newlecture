@@ -49,7 +49,7 @@ class Hello {
         
         // 파일 입력
         // data.txt 파일에서 국어, 영어, 수학 성적 입력 받기
-        FileInputStream fis = new FileInputStream("C:\\Users\\이민주\\Desktop\\coding\\2021-02\\workspace\\JavaPrj\\data.txt");
+        FileInputStream fis = new FileInputStream("C:\\Users\\이민주\\Desktop\\coding\\2021-02\\workspace\\data.txt");
         Scanner scan1 = new Scanner(fis);
         kor = scan1.nextInt(); 
         eng = scan1.nextInt(); 
@@ -59,7 +59,7 @@ class Hello {
         
         
         // 파일 출력
-        FileOutputStream fos = new FileOutputStream("C:\\Users\\이민주\\Desktop\\coding\\2021-02\\workspace\\JavaPrj\\data.txt");
+        FileOutputStream fos = new FileOutputStream("C:\\Users\\이민주\\Desktop\\coding\\2021-02\\workspace\\data.txt");
         PrintStream fout = new PrintStream(fos); // system.out은 콘솔에 출력을 하는 역할
         kor++; 
         eng--; 
