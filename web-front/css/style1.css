@@ -1,0 +1,39 @@
+html {
+    font-size: 100px;
+}
+
+#header {
+    font-size: 30px;
+    height: 500px;
+    background-color: red;
+}  
+
+#header>div {
+    /* font-size: 500px; */
+    height: 1em;
+    background-color: blue;
+} 
+
+#body {
+    height: 5em;
+    font-size: 100px;
+    /* height: 171px; */
+    background-color: green;
+}
+
+#visual {
+    height: 3rem;
+    /* height: 171px; */
+    background-color: coral;
+} 
+
+#footer {
+    height: 3rem;
+    /* height: 171px; */
+    background-color: yellow;
+}
+
+
+
+
+
