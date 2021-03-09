@@ -1,0 +1,35 @@
+#container {
+    background-color: grey;
+    width: 500px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+#container>div {
+    flex-basis: 300px; /* row일 때는 width, column일 때는 height */
+    flex-grow: 1;
+}
+
+#container>div.box1 {
+    background-color: pink;
+    flex-shrink: 0; /* 1은 줄어드는 것, 여백이 아닌 컨텐츠의 2는 2배로 크게 줄어드는 것 */
+    /* flex-basis: 200px;  */
+}
+
+#container>div.box2 {
+    background-color: red;
+}
+
+#container>div.box3 {
+    background-color: yellow;
+}
+
+#container>div.box4 {
+    background-color: coral;
+}
+
+#container>div.box5 {
+    background-color: green;
+}
