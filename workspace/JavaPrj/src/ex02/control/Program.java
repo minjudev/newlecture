@@ -54,15 +54,7 @@ public class Program {
         }
         
         System.out.println("Bye!");
-        
-		
-		
-		
-//		Scanner scan = new Scanner(System.in);
-//		int ans = scan.nextInt();
-//		int x = ans > 3 ? 2 : 3; 
-//		
-//		System.out.println(x);
+     
 	}
 
 }
