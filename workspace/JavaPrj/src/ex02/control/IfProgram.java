@@ -22,7 +22,7 @@ public class IfProgram {
 		} else if(x > 5) {
 			System.out.print("5보다 크다");
 		}		
-			
+				
 	}
 
 }
