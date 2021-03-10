@@ -5,7 +5,7 @@ import java.util.Random;
 public class Program {
 
 	public static void main(String[] args) {
-		// Random 객체를 rand라는 이름으로 새엉
+		// Random 객체를 rand라는 이름으로 선언
 		Random rand = new Random();
 		
 		int[] kors = new int[6]; 

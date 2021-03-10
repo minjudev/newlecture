@@ -17,7 +17,7 @@ public class CopyProgram {
 		byte[] buf = new byte[1000];
 		
 		while((size = fis.read(buf)) != -1) // fis.read(buf)는 읽어들인 바이트 수 반환
-			fos.write(buf);
+			fos.write(buf, 0, size); // 마지막에 366개만 읽어왔으면 366개만 출력할 수 있게 하기
 		
 		fis.close();
 		fos.close();
