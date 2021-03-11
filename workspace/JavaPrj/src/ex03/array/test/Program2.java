@@ -43,9 +43,9 @@ public class Program2 {
 		// [nums 배열을 버블정렬해보자.]
 		
 		// nums 배열 버블정렬하기
-		for(int j=0; j<9; j++)
+		for(int j=0; j<10-1; j++) 
 			// nums 배열 중 가장 큰 숫자를 제일 뒤로 옮기기
-			for(int i=0; i<9; i++) 
+			for(int i=0; i<10-1-j; i++) 
 				if(nums[i] > nums[i+1]) {
 					int temp;
 					temp = nums[i];
