@@ -1,15 +1,18 @@
 html {
-
+    height: 100%;
 }
 
 body {
     margin: 0px;
+
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
 }
 
 /* --------------------------------------------------- */
 
 .float-content {
-    background-color: blueviolet;
     width: 960px;
     height: 100%; 
     min-height: inherit;
@@ -19,18 +22,21 @@ body {
 }
 
 #header {
+    background-color: #0000ff00;
     height: 70px;
-    background-color: red;
 }   
 
 #visual {
     height: 171px;
-    background-color: coral;
+    border-top: 3px solid #8CBA34;
+    background: #313131 url(../images/bg-visual.png) no-repeat center;
 } 
 
 #body {
     min-height: 300px;
-    background-color: green;
+    flex-grow: 1;
+    border-top: 5px solid #8CBA34;
+    margin-top: 1px;
 }
 
     #body>.float-content {
@@ -40,16 +46,24 @@ body {
         #aside {
             width: 205px;
             min-height: inherit;
-            background-color: yellow;
         }
+            
+            #aside>.img {
+                width: 100px;
+                height: 100px;
+                border: 1px solid #000000;
+                background: url(../images/logo.png) no-repeat;
+                background-size: contain;
+            }
 
         main {
             width: 755px;
             min-height: inherit;
-            background-color: red;
+            overflow: scroll;
+            background: url("../images/1.jpg") no-repeat;
         }
 
 #footer {
     height: 100px;
-    background-color: darkblue;
+    background-color: #313131;
 }

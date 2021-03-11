@@ -1,31 +1,27 @@
 #container {
     background-color: grey;
     --width: 500px;
-    height: 100px;
-
+    height: 300px;
+    
     display: flex;
-    /* flex-direction: column;
-    flex-wrap: wrap; */
-    flex-flow: column wrap; /* flex-direction과 flex-wrap을 한번에 설정 */
+    flex-direction: row;
+    /* flex-wrap: wrap;  */
+    /* flex-flow: column wrap; */ /* flex-direction과 flex-wrap을 한번에 설정 */
 }
 
 #container>div {
-    /*flex-basis: 300px;*/ /* row일 때는 width, column일 때는 height */
+    /* flex-basis: 100px; row일 때는 width, column일 때는 height */
     /* flex-grow: 1; */
 }
 
 #container>div.box1 {
-    flex-basis: 100px;
-    flex-shrink: 1;
-    flex-grow: 0;
+    flex-basis: 300px;
+    flex-shrink: 1; 
+    /* flex-grow: 2;  */
     background-color: pink;
-    flex-shrink: 0; 
-    /* flex-basis: 200px;  */
 }
 
 #container>div.box2 {
-    order: -1;
-    flex: 0 2 100px;
     background-color: red;
 }
 
