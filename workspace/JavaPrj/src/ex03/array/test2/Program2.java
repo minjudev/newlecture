@@ -9,9 +9,9 @@ public class Program2 {
 
 		String[] names = new String[] {"강호동", "유재석", "하하", "김지호", "김현준", "김태희", "박민정"};
 				
-		String n = new String("hello"); // new 연산자로 String이라는 객체를 만들고 문자열을 객체에 담아서 선언
+		String n = new String("hello"); // new 연산자로 "hello"라는 String 객체를 만들고 n(참조변수)이라는 이름을 붙여줌
 		String nn = "hello"; // 단순한 문자열이 아니라 문자열을 품고 있는 커다란 도구
-		// 저 도구(String)를 사용해서 문자열에 대한 연산을 할 수 있음, 문자열은 String 객체
+		// 저 도구("hello")를 사용해서 문자열에 대한 연산을 할 수 있음, 문자열("hello")은 String 객체
 		
 		String n1 = "홍길동"; // 이렇게 써도 실제로는 n3, n4처럼 객체에 담아짐
 		String n2 = "홍길동";
