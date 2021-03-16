@@ -1,0 +1,41 @@
+body {
+    margin: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100vh; 
+    /* 다시 */
+
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    /* 각 너비가 최소 50px까지 줄어들지만, 그 이하로 더 줄어들면 화면 비율에 맞게 화면의 너비 길이를 각 요소의 너비가 1fr씩 나눠 가지게 됨 */
+
+    /* grid-template-columns: repeat(auto-fill, 50px);  */
+    grid-template-rows: repeat(auto-fill, 50px); 
+    
+    /* gap: 10px; */
+    /* grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(auto-fill, 100px); */
+}
+
+li {
+    /* width: 100px;
+    height: 100px; */
+    
+    grid-column: span 2; /* 각 li의 너비가 2칸 만큼 차지 */
+    grid-row: span 2; /* 각 li의 높이가 2칸 만큼 차지 */
+
+    /* grid-column: 5 / 6; 간편식
+    grid-row: 2 / 3; */
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
