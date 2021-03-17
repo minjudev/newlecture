@@ -1,0 +1,45 @@
+html, body {
+    height: 100%; /* root의 부모들의 높이를 100%로 높이기 */
+    margin: 0;
+}
+
+#root {
+    height: 100%; /* vh를 사용해 화면에 맞춰서 높이를 주게 되면, 화면에 맞게 크기가 달라지니까 나중에 부모와의 크기가 안 맞게 될 가능성이 있음 */
+    display: grid;
+    grid-template-columns: [aside-start] 250px [aside-end main-start] 1fr [main-end];
+    grid-template-rows: [header-start] 70px [header-end body-start] 1fr [body-end footer-start] 100px [footer-end];
+}
+
+.box1 {
+    background-color: red;
+    /* grid-column-start: 1;  */
+    /* grid-column: 1 / span 2 */
+    /* grid-column-end: 3;  */
+    /* auto는 column-end가 3까지 밖에 없지만 4로 지정했을 경우에도 자동으로 늘려줌 */
+    /* fr는 column-end를 4 이상으로 지정해도 처음 grid-template-columns에서 지정된 만큼만 분할해줌 -> fr을 쓰는 게 더 바람직*/
+    /* grid-row-start: 1;
+    grid-row-end: 2;  */
+    grid-area: header-start/aside-start/header-end/main-end;
+    /* grid-area: 1/1/2/3 : 영역을 반시계 방향으로 설정 */
+}
+
+.box2 {
+    background-color: gold;
+    /* grid-column-start: 1;
+    grid-column-end: 2;  */
+    grid-area: body-start/aside-start/footer-end/aside-end;
+}
+
+.box3 {
+    background-color: blue;
+    /* grid-column-start: 2;
+    grid-column-end: 3;  */
+    grid-area: 2/2/3/3;
+}
+
+.box4 {
+    background-color: green;
+    grid-column-start: 1;
+    grid-column-end: 3; 
+    grid-area: 3/1/4/3;
+}
