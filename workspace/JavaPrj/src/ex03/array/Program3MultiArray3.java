@@ -3,6 +3,7 @@ package ex03.array;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -57,7 +58,7 @@ public class Program3MultiArray3 {
 				System.out.printf("%s", rows[i][j]);
 				
 				if(j<9) 
-					System.out.printf(", ", rows[i][j]);
+					System.out.printf(", ");
 			}
 			
 			System.out.println();			
@@ -101,13 +102,12 @@ public class Program3MultiArray3 {
 				}
 			}
 			
-			System.out.printf("일별 최대 검사진행자 수: %d, 해당 날짜: %s\n", max, rows[index][0]); // 맞게 한 건가?
+			System.out.printf("일별 최대 검사진행자 수: %d, 해당 날짜: %s\n", max, rows[index][0]); 
 			System.out.println();	
 		}
 		
 		
-		// 확진자 수가 늘어난 날짜와 증가된 확진자 수를 출력하시오.
-	
+		// 확진자 수가 늘어난 날짜와 증가된 확진자 수를 출력하시오.		
 		{
 			int index = 0; 
 			int old = Integer.parseInt(rows[0][1]); // 이전 확진자 수
@@ -126,9 +126,59 @@ public class Program3MultiArray3 {
 					index++; 
 					System.out.printf("%d - 날짜: %s / 증가된 확진자 수: %d\n", index, date, diff);
 				}
-			}		
+			}	
+			
+			System.out.println();	
 		}
 		
+		
+		// 확진자 수가 늘어난 날짜와 증가된 확진자 수를 다음 배열에 담아주시오.
+		String[][] results;
+		int resultCount = 0;
+		
+		{
+			int old = Integer.parseInt(rows[0][1]); // 이전 확진자 수
+			
+			for(int i=0; i<count; i++) { 
+				int current = Integer.parseInt(rows[i][1]); // i번째 행의 확진자 수
+
+				if(old < current) {
+					old = current;
+					resultCount++;
+				}				
+			}
+			
+			System.out.printf("증가된 확진자 수가 발생한 날짜 수: %d\n", resultCount);
+			System.out.println();
+			
+			// -----------------------------------------------------------------
+			
+			results = new String[resultCount][];
+			old = Integer.parseInt(rows[0][1]);
+			int index = 0;
+			int diff = 0;
+			String date = "";
+			
+			for(int i=0; i<count; i++) { 
+				int current = Integer.parseInt(rows[i][1]); // i번째 행의 확진자 수
+
+				if(current > old) {
+					diff = current - old;
+					date = rows[i][0];
+					old = current; // 현재 값을 다시 이전 확진자 수 변수에 담기
+										
+					String[] row = new String[2];
+					row[0] = date;
+					row[1] = String.valueOf(diff);
+					results[index] = row; // 후위연산자를 통해 index가 다음으로 넘어가기 전 어디선가(출력되기 전에)에서 바로 index에 1이 더해짐
+					
+					System.out.println(Arrays.toString(results[index++]));
+
+//					index++;
+				}
+			}		
+		}
+
 	}
 
 }
