@@ -43,6 +43,18 @@ public class Program3MultiArray3 {
 			for(int i=0; i<count; i++) {
 				line = fscan.nextLine();
 				rows[i] = line.split(",");
+				
+//				rows[i][0];
+//				rows[i][1];
+//				rows[i][2];
+
+				// 위처럼 배열로 표현하는 것보다 아래처럼 의미를 직접적으로 명시해 표현하는 것이 데이터의 의미를 확실히 알 수 있음
+				// 이를 위해 필요한 것이 class(struct가 하는 것을 자바에서는 class가 할 수 있음)
+				// class: 데이터 구조 표현, 캡슐화를 위해 사용
+//				rows.date;
+//				rows.positive;
+//				rows.death;
+				
 			}
 			
 			fscan.close();
@@ -166,11 +178,12 @@ public class Program3MultiArray3 {
 					diff = current - old;
 					date = rows[i][0];
 					old = current; // 현재 값을 다시 이전 확진자 수 변수에 담기
-										
+					
+					// 확진자 수가 늘어난 날짜와 증가된 확진자 수를 담기 위한 배열
 					String[] row = new String[2];
 					row[0] = date;
 					row[1] = String.valueOf(diff);
-					results[index] = row; // 후위연산자를 통해 index가 다음으로 넘어가기 전 어디선가(출력되기 전에)에서 바로 index에 1이 더해짐
+					results[index] = row; // 후위 연산자를 통해 해당 코드 실행 후 index에 바로 1이 더해짐
 					
 					System.out.println(Arrays.toString(results[index++]));
 
