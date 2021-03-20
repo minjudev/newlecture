@@ -1,0 +1,45 @@
+#root {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr); /* [col-start]: 라인번호 이름 지정 */
+    gap: 20px;
+}
+
+#root > * {
+    background-color: red;
+    grid-column: 1 / span 12;
+}
+
+.navbar {
+    list-style: none;
+}
+
+@media screen and (min-width: 500px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #root > .side,
+    #root > .ad {
+        grid-column: 1 / span 3;
+    }
+
+    #root > .content,
+    #root > .main-footer {
+        grid-column: 4 / span 9;
+        /* "col-start 4" 또는 "1 4" 가 1(col-start)부터 4까지는 앞이 비어있다는 뜻 */
+        /* col-start를 안 써줘도 됨 */
+    }
+
+    #root > .side,
+    #root > .content {
+        grid-row: 3; /* 라인 번호 3번에서 한 칸만 적용 */
+    }
+
+    #root > .ad,
+    #root > .main-footer {
+        grid-row: 4; 
+    }
+
+} 
