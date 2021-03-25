@@ -1,43 +1,52 @@
 html, body {
-    height: 100%; /* root의 부모들의 높이를 100%로 높이기 */
-    margin: 0;
+    height: 100%;
+    margin:0;
+}
+
+/* --------------------------------------------------------------- */
+.float-content {
+    width:960px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    min-height:inherit;
+    opacity: 0.7;    
+    /* height: inherit; */
 }
 
 #root {
-    height: 100%; /* vh를 사용해 화면에 맞춰서 높이를 주게 되면, 화면에 맞게 크기가 달라지니까 나중에 부모와의 크기가 안 맞게 될 가능성이 있음 */
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 250px 750px 1fr;
     grid-template-rows: 70px 171px 1fr 100px;
-    grid-template-areas:
+    grid-template-areas: 
     "header header header header"
     "visual visual visual visual"
-    "x_aside aside main x_main"
+    ". aside main ."
     "footer footer footer footer";
 }
 
-.box1 {
-    background-color: red;
+#header {
+    background-color: white;
     grid-area: header;
-   
 }
 
-.box2 {
-    background-color: gold;
+#visual {
+    border-top:3px solid #8CBA34;
+    background:#313131 url("../images/bg-visual.png") no-repeat center;
     grid-area: visual;
-
 }
 
-.box3 {
+#aside {
     background-color: blue;
     grid-area: aside;
 }
 
-.box4 {
-    background-color: green;
+#main {
     grid-area: main;
 }
 
-.box5 {
-    background-color: lightcoral;
+#footer {
+    background-color: #313131;
     grid-area: footer;
 }

@@ -27,9 +27,8 @@
 
     #root > .content,
     #root > .main-footer {
-        grid-column: 4 / span 9;
-        /* "col-start 4" 또는 "1 4" 가 1(col-start)부터 4까지는 앞이 비어있다는 뜻 */
-        /* col-start를 안 써줘도 됨 */
+        grid-column: col-start 4 / span 9;
+        /* "col-start 4"는 네번째 라인을 뜻함 */
     }
 
     #root > .side,
@@ -41,5 +40,35 @@
     #root > .main-footer {
         grid-row: 4; 
     }
-
 } 
+
+@media screen and (min-width: 800px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #root > .main-nav {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 2;
+    }
+    
+    #root > .content {
+        grid-column: 3 / span 8;
+        grid-row: 2 / span 2;
+    }
+
+    #root > .side {
+        grid-column: 11 / span 2;
+        grid-row: 2;
+    }
+
+    #root > .ad {
+        grid-column: 11 / span 2;
+        grid-row: 3;
+    }
+    
+    #root > .main-footer {
+        grid-column : 1 / span 12;
+    }
+}

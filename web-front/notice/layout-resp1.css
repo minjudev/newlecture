@@ -46,12 +46,12 @@ html, body {
     background-color: lightgreen;
 }
 
+/* break point */
 /* screen의 너비가 500px이 넘어가면 아래 속성을 적용 */
 @media screen and (min-width: 500px) {
     #root {
         display: grid;
         grid-template-columns: 250px 1fr;
-        /* grid-template-rows: . . . .; */
         grid-template-areas: 
         "header header"
         "aside aside"
