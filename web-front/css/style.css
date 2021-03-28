@@ -1,100 +1,114 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
 }
 
-body {
-    margin: 0px;
-
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
+a {
+    color: initial;
+    text-decoration: initial;
 }
 
-/* --------------------------------------------------- */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 
+/* --------------------------------------------------------------- */
+
+.d-none {
+    display: none;
+}
+
+/* --------------------------------------------------------------- */
 .float-content {
     width: 960px;
-    height: 100%; 
-    min-height: inherit;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0.7;
+    height: 100%;
+    min-height: inherit;
+    opacity: 0.7;    
+    /* height: inherit; */
+}
+
+#root {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 205px 755px 1fr;
+    grid-template-rows: 70px 171px 1fr 100px;
+    grid-template-areas: 
+    "header header header header"
+    "visual visual visual visual"
+    "body body body body"
+    "footer footer footer footer";
 }
 
 #header {
-    background-color: yellow;
-    height: 70px;
-    width: 1000px;
-    position: sticky;
-    left: 50px;
-    top: 50px;
-    z-index: 999;
-}   
-
-#visual {
-    height: 171px;
-    border-top: 3px solid #8CBA34;
-    background: #313131 url(../images/bg-visual.png) no-repeat center;
-} 
-
-#body {
-    min-height: 300px;
-    flex-grow: 1;
-    border-top: 5px solid #8CBA34;
-    margin-top: 1px;
+    background-color: white;
+    grid-area: header;
 }
 
-    #body>.float-content {
-        display: flex;
-    }
+#visual {
+    border-top: 3px solid #8CBA34;
+    background: #313131 url("../images/bg-visual.png") no-repeat center;
+    grid-area: visual;
+}
 
-        #aside {
-            width: 205px;
-            min-height: inherit;
-        }
-            
-            #aside>.img {
-                width: 100px;
-                height: 100px;
-                border: 1px solid #000000;
-                background: url(../images/logo.png) no-repeat;
-                background-size: contain;
-            }
+#body {
+    border-top: 5px solid #8CBA34;
+    margin-top: 1px;
+    grid-area: body;
 
-        main {
-            width: 755px;
-            min-height: inherit;
-            overflow: scroll;
-            background: url("../images/1.jpg") no-repeat;
-        }
+    display: grid; /* 해당 설정만 했을 때는 자동적으로 body가 네 개의 영역으로 나눠짐 */
+    grid-template-columns: 1fr 205px 755px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". aside main .";
+}
 
-        #quick-menu {
-            background-color: aqua;
-            position: relative;
-            left: 300px;
-            top: 300px;
-        }
+#aside {
+    background-color: blue;
+    grid-area: aside;
+}
 
-        #box-container {
-            width: 300px;
-            height: 300px;
-            background-color: gray;
-
-            position: relative;
-        }
-
-        .box {
-            position: absolute;
-            left: 50px;
-            top: 50px;
-            transition: 1s;
-
-            width: 100px;
-            height: 100px;
-            background-color: aquamarine;
-        }
+#main {
+    background-color: blueviolet;
+    grid-area: main;
+}
 
 #footer {
-    height: 100px;
     background-color: #313131;
+    grid-area: footer;
+}
+
+/* @media screen and (min-width: 500px) {
+   
+}  */
+
+@media screen and (max-width: 960px) {
+    .float-content {
+        width: 100%;
+    }
+
+    #root {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "visual"
+        "body"
+        "footer";
+    }
+    
+    #body {
+        grid-template-columns: 1fr;
+        grid-template-areas: "main";
+    }
+}
+ 
+/* ------------------------------------------------------------------- */
+
+.main-menu {
+    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #000000;
+    font-weight: bold;
+    font-size: 15px;
 }
