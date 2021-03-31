@@ -17,29 +17,28 @@
                 <section>
                     <h1 class="d-none">헤더</h1>
                     <nav class="main-menu">
-                        <h1 class="d-none">메인메뉴</h1>
+                        <h1 class="d-none">메인 메뉴</h1>
                         <ul>
                             <li><a class="redsun" href="" dir="ltr">학습가이드</a></li>
-                            <li><span><a href="">강좌선택</a></span></li>
+                            <li><a href="">강좌선택</a></li>
                             <li><a href="">AnswerIs</a></li>
                         </ul>
                     </nav>
-                    <section>
-                        <h1>강좌검색폼</h1>
+                
+                    <section class="lecture-search-form">
+                        <h1 class="d-none">강좌 검색 폼</h1>
                         <form>
-                            과정검색
-                        </form>
-                    </section>
-                    
-                    <section>
-                        <h1>강좌검색폼</h1>
-                        <form>
-                            과정검색
+                            <fieldset>  <!-- 다른 필드셋과 구분해주고 싶을 때 사용 -->
+                                <legend class="d-none">과정 검색 필드</legend> <!-- 필드셋에 대한 라벨 -->
+                                <label>과정 검색</label>
+                                <input type="text">
+                                <input class="button" type="submit" value="검색">
+                            </fieldset>  
                         </form>
                     </section>
 
-                    <nav>
-                        <h1>회원메뉴</h1>
+                    <nav class="member-menu">
+                        <h1 class="d-none">회원 메뉴</h1>
                         <ul>
                             <li><a href="index.html">HOME</a></li>
                             <li><a href="member/login.html">로그인</a></li>
@@ -47,11 +46,11 @@
                         </ul>
                     </nav>
                 
-                    <nav>
-                        <h1>고객센터메뉴</h1>
+                    <nav class="customer-menu">
+                        <h1 class="d-none">고객센터 메뉴</h1>
                         <ul>
-                            <li>마이페이지</li>
-                            <li>고객센터</li>
+                            <li><a class="button mypage-button" href="">마이페이지</a></li>
+                            <li><a class="button customer-button" href="">고객센터</a></li>
                         </ul>
                     </nav>
                 </section>
@@ -87,11 +86,9 @@
             </aside>
 
             <main id="main">
-                <!-- <section>
-                    <h1>공지사항</h1>
-
-                    <section>
-                        <h1>경로</h1>
+                <section>
+                    <section class="breadcrumb">
+                        <h1 class="d-none">경로</h1>
                         <ol>
                             <li>home</li>
                             <li>고객센터</li>
@@ -99,7 +96,7 @@
                         </ol>
                     </section>
 
-                    <section>
+                    <!-- <section>
                         <h1>공지사항 목록</h1>
                         <table>
                             <tr>
@@ -144,9 +141,9 @@
                             <li>5</li>
                         </ul>
                         <div>다음</div>
-                    </nav>
+                    </nav> -->
 
-                </section> -->
+                </section>
             </main>
         </div>
 
@@ -158,6 +155,4 @@
         </footer>
     </div>
 </body>
-
-
 </html>

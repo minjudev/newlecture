@@ -3,6 +3,7 @@ html, body {
     margin: 0;
 }
 
+/* a 태그 리셋 */
 a {
     color: initial;
     text-decoration: initial;
@@ -17,10 +18,19 @@ ul {
 /* --------------------------------------------------------------- */
 
 .d-none {
-    display: none;
+    display: none !important;
 }
 
 /* --------------------------------------------------------------- */
+
+.button {
+    display: inline-block;
+    text-indent: -999px; /* 아예 왼쪽으로 들여쓰기 해서 이미지의 너비가 오른쪽으로 커지더라도 글자가 보이지 않게 만들기 */
+    overflow: hidden; /* 왼쪽 또는 오른쪽으로 overflow된 요소가 있으면 보이지 않게 하기 */
+}
+
+/* --------------------------------------------------------------- */
+
 .float-content {
     width: 960px;
     margin-left: auto;
@@ -35,7 +45,7 @@ ul {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 205px 755px 1fr;
-    grid-template-rows: 70px 171px 1fr 100px;
+    grid-template-rows: 500px 171px 1fr 100px;
     grid-template-areas: 
     "header header header header"
     "visual visual visual visual"
@@ -111,4 +121,129 @@ ul {
     color: #000000;
     font-weight: bold;
     font-size: 15px;
+    display: inline-block;
 }
+
+    .main-menu>ul {
+        display: flex;
+    }
+
+        .main-menu>ul>li {
+            padding-left: 24px;
+            background: url(../images/bg-main-menu-vsp.png) no-repeat 12px center;
+        }
+
+        .main-menu>ul>li:first-child {
+            padding-left: 0;
+            background: none;
+        }
+
+        .main-menu>ul>li>a:hover {
+            color: gold;
+        }
+
+.lecture-search-form {
+    display: inline-block;
+    width: 308px;
+    height: 25px;
+    border: 5px solid #8CBA34;
+}
+
+    .lecture-search-form fieldset {
+        display: flex;
+        border: 0px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .lecture-search-form fieldset label { /* label: 인라인 태그(그런데 너비, 높이가 왜 적용됐을까?) */
+                                          /* flex-item으로서 존재하기 때문에 너비, 높이를 가질 수 있음 */
+        font-size: 11px;
+        font-weight: bold;
+        flex-basis: 55px; /* width: 55px; */ /* flex-item은 너비를 flex-basis로 주는 것이 좋다 */
+        /* align-items: stretch; */ /* stretch가 기본, 부모의 높이가 그대로 반영됨 */
+        text-align: center;
+        line-height: 25px;
+    }
+
+    .lecture-search-form fieldset input[type=text]/*:nth-child(3)*/ {
+        flex-grow: 1;
+        border: 0;
+        /* text-indent: 5px; */
+        padding-left: 5px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .lecture-search-form fieldset input[type=submit] {
+        flex-basis: 31px;
+        background: url(../images/btn-zoom.png) no-repeat center;
+        border: 0px;
+        border-left: 1px solid #8CBA34;
+    }
+
+.member-menu {
+    font-family: "맑은 고딕";
+    font-size: 10px;
+    font-weight: bold;
+    color: #979797;
+    display: inline-block;
+}
+
+    .member-menu>ul {
+        display: flex;
+    }
+
+        .member-menu>ul>li {
+            padding-left: 9px;
+            background: url(../images/bg-member-menu-sp.png) no-repeat 4.5px center;
+        }
+
+        .member-menu>ul>li:first-child {
+            padding-left: 0;
+            background: none;
+        }    
+
+.customer-menu {
+    display: inline-block;
+}
+
+    .customer-menu>ul {
+            display: flex;
+        }
+        
+        .customer-menu .mypage-button {
+            background: url("../images/txt-mypage.png") no-repeat center; /* x, y 좌표 모두 center; */
+            width: 72px; 
+            height: 17px; 
+        }
+        
+        .customer-menu .customer-button {     
+            background: url("../images/txt-customer.png") no-repeat center;
+            width: 72px; 
+            height: 17px;
+        }
+
+.breadcrumb {
+    font-family: "맑은 고딕";
+    font-size: 10px;
+    font-weight: bold;
+    color: #979797;
+    display: inline-block;
+}
+
+    .breadcrumb>ol {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+    }
+
+        .breadcrumb>ol>li {
+            padding-left: 10px;
+            background: url(../images/icon-path.png) no-repeat 0px center;
+        }
+
+        .breadcrumb>ol>li:first-child {
+            padding-left: 20px;
+            background: url(../images/icon-home.png) no-repeat 0px center;
+        }
