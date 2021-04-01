@@ -41,12 +41,20 @@ public class Program {
 //		Lotto2 lotto = new Lotto2();
 //		lotto.gen();
 		
+		// Exam 객체를 직접 사용하지 않고 NewExam에서 부모의 오버로드 생성자를 호출해 Exam 객체에 인자를 넘겨줄 수 있음
+//		Exam e1 = new Exam(10, 20, 30);
+		
 		// 성적 데이터
-		NewExam exam = new NewExam(); // 이 객체에 해당되는 생성자만 호출된다고 생각하면 exam.total()이 0이 나와야함
-		int total = exam.total(); // 하지만, Exam 생성자도 같이 호출되서 total() 값이 30이 나온다
+		NewExam exam = new NewExam(); 
+//		NewExam exam = new NewExam(1, 1, 1, 1); // 이렇게 하면 인자가 총 5개 넘겨짐: 1, 1, 1, 1과 NewExam 객체
+		int total = exam.total(); 
 		float avg = exam.avg();
 		
 		System.out.printf("total: %d, avg: %f\n", total, avg);
+		
+		// Frame을 Is A 상속하기
+		MyFrame win = new MyFrame();
+		win.setVisible(true);
 		
 	}
 
