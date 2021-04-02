@@ -23,10 +23,24 @@ ul {
 
 /* --------------------------------------------------------------- */
 
-.button {
+.button,
+.icon,
+.img {
     display: inline-block;
     text-indent: -999px; /* 아예 왼쪽으로 들여쓰기 해서 이미지의 너비가 오른쪽으로 커지더라도 글자가 보이지 않게 만들기 */
     overflow: hidden; /* 왼쪽 또는 오른쪽으로 overflow된 요소가 있으면 보이지 않게 하기 */
+}
+
+.img-notepubs {
+    background: url(../images/notepubs.png) no-repeat;
+    width: 180px;
+    height: 50px;
+}
+
+.img-namoolab {
+    background: url(../images/namoolab.png) no-repeat;
+    width: 180px;
+    height: 50px;
 }
 
 /* --------------------------------------------------------------- */
@@ -45,7 +59,7 @@ ul {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 205px 755px 1fr;
-    grid-template-rows: 500px 171px 1fr 100px;
+    grid-template-rows: 70px 171px 1fr 100px;
     grid-template-areas: 
     "header header header header"
     "visual visual visual visual"
@@ -64,24 +78,31 @@ ul {
     grid-area: visual;
 }
 
+    #visual>.float-content {
+        background: url("../images/customer/visual.png") no-repeat center;
+    }
+
 #body {
     border-top: 5px solid #8CBA34;
     margin-top: 1px;
     grid-area: body;
-
-    display: grid; /* 해당 설정만 했을 때는 자동적으로 body가 네 개의 영역으로 나눠짐 */
-    grid-template-columns: 1fr 205px 755px 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: ". aside main .";
 }
 
+    #body>.float-content {
+        display: grid; /* 해당 설정만 했을 때는 자동적으로 body가 네 개의 영역으로 나눠짐 */
+        grid-template-columns: 1fr 205px 755px 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". aside main .";
+
+        background: url("../images/bg-body.png") repeat-y;
+    }
+
 #aside {
-    background-color: blue;
     grid-area: aside;
+    background: url("../images/bg-aside-title.png") no-repeat;
 }
 
 #main {
-    background-color: blueviolet;
     grid-area: main;
 }
 
@@ -116,12 +137,32 @@ ul {
  
 /* ------------------------------------------------------------------- */
 
+#header>.float-content {
+    position: relative;
+    /* 아래 자식들이 float-content를 기준으로 하기 위해 여기에 relative 주기 */
+}
+
+.logo { /* logo는 section과는 다른 방에 있어서 헤더의 메뉴들과 다른 층을 쓰게 됨  */
+    margin: 0;
+    display: inline-block;
+    position: absolute; /* 기본값: static - 이 때는 left, top이 의미 없음 */
+                        /* absolute(문서 좌상단 기준) / relative(자신 기준) / fixed(화면 좌상단 기준) / sticky(부모 태그 기준) */
+                        /* 부모나 조상에 relative가 없으면 문서 좌상단 기준 */
+    left: 0px;
+    top: 23px;
+}
+
 .main-menu {
+    display: inline-block;
+    
     font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #000000;
     font-weight: bold;
     font-size: 15px;
-    display: inline-block;
+   
+    position: absolute; /* relative를 주게 되면 static 위치에서 left, t */
+    left: 200px;
+    top: 27px;
 }
 
     .main-menu>ul {
@@ -144,9 +185,14 @@ ul {
 
 .lecture-search-form {
     display: inline-block;
+   
     width: 308px;
     height: 25px;
     border: 5px solid #8CBA34;
+   
+    position: absolute;
+    left: 468px;
+    top: 21px;
 }
 
     .lecture-search-form fieldset {
@@ -183,11 +229,15 @@ ul {
     }
 
 .member-menu {
-    font-family: "맑은 고딕";
+    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 10px;
     font-weight: bold;
     color: #979797;
     display: inline-block;
+    position: absolute;
+    /* left: 468px; */ /* html 컨텐츠가 바뀔 수 있으므로 left 값 사용 비권장 */
+    right: 0px; /* 오른쪽 정렬 필요 */
+    top: 20px;
 }
 
     .member-menu>ul {
@@ -206,6 +256,9 @@ ul {
 
 .customer-menu {
     display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 40px;
 }
 
     .customer-menu>ul {
@@ -225,7 +278,7 @@ ul {
         }
 
 .breadcrumb {
-    font-family: "맑은 고딕";
+    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 10px;
     font-weight: bold;
     color: #979797;
@@ -247,3 +300,29 @@ ul {
             padding-left: 20px;
             background: url(../images/icon-home.png) no-repeat 0px center;
         }
+
+#aside>h1 {
+    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
+
+    .aside-main-menu li {
+        height: 26px;
+        background: url(../images/bg-aside-menu-hsp.png) no-repeat center bottom;
+    }
+
+    .aside-main-menu a {
+        font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 11px;
+        color: #808080;
+        padding-left: 26px;
+    }
+
+    .aside-main-menu a:hover,
+    .aside-main-menu a.current {
+        background: url(../images/icon-current.png) no-repeat 13px center;
+    }
+    
