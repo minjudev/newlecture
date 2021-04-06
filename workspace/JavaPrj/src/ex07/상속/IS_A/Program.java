@@ -45,16 +45,17 @@ public class Program {
 //		Exam e1 = new Exam(10, 20, 30);
 		
 		// 성적 데이터
-		NewExam exam = new NewExam(); 
+//		NewExam exam = new NewExam(); 
 //		NewExam exam = new NewExam(1, 1, 1, 1); // 이렇게 하면 인자가 총 5개 넘겨짐: 1, 1, 1, 1과 NewExam 객체
+		Exam exam = new NewExam(); // 부모 자료형으로 참조 가능
 		int total = exam.total(); 
 		float avg = exam.avg();
 		
 		System.out.printf("total: %d, avg: %f\n", total, avg);
 		
 		// Frame을 Is A 상속하기
-		MyFrame win = new MyFrame();
-		win.setVisible(true);
+//		MyFrame win = new MyFrame();
+//		win.setVisible(true);
 		
 	}
 

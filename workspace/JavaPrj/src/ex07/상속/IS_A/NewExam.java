@@ -13,7 +13,7 @@ public class NewExam extends Exam/* 기존 Exam을 틀로 가져다 쓰기 */ {
 		this(1, 1, 1, 1); // 코드가 중복된 생성자를 이렇게 해결, 오버로드된 생성자를 재호출
 						  // this(1,1,1,1)이랑 this()에서 가리키는 this는 모두 Program.java의 48번째줄 NewExam인데 
 						  // this(1,1,1,1)을 했을 때는 오버로드 생성자가 호출되고 this()를 했을 때는 기본 생성자가 호출되는 것임
-		com = 10;
+//		com = 10;
 	}
 	
 	// 자식 객체에서도 오버로드 생성자 사용 가능
