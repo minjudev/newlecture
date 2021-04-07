@@ -1,6 +1,10 @@
 html, body {
     height: 100%;
+}
+
+html, body, h1, ul, ol {
     margin: 0;
+    padding: 0;
 }
 
 /* a 태그 리셋 */
@@ -9,11 +13,18 @@ a {
     text-decoration: initial;
 }
 
-ul {
+ul, ol {
     list-style: none;
-    margin: 0;
-    padding: 0;
 }
+
+/* ----------------------- common style -------------------------- */
+
+body {
+    font-family: "돋음", Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: #979797;
+}
+
 
 /* --------------------------------------------------------------- */
 
@@ -51,7 +62,6 @@ ul {
     margin-right: auto;
     height: 100%;
     min-height: inherit;
-    opacity: 0.7;    
     /* height: inherit; */
 }
 
@@ -104,16 +114,75 @@ ul {
 
 #main {
     grid-area: main;
+    padding: 45px 0px 50px 35px;
 }
+
+    .breadcrumb {
+        font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        color: #979797;
+        display: inline-block;
+    }
+
+        .breadcrumb>ol {
+            display: flex;
+            padding-left: 0;
+        }
+
+            .breadcrumb>ol>li {
+                padding-left: 10px;
+                background: url(../images/icon-path.png) no-repeat 0px center;
+            }
+
+            .breadcrumb>ol>li:first-child {
+                padding-left: 20px;
+                background: url(../images/icon-home.png) no-repeat 0px center;
+            }
+
+    .main-title {
+        font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: #646464;
+        font-weight: bold;
+        font-size: 21px;
+        padding-left: 25px;
+        background: url(../images/icon-main-title.png) no-repeat 0px center;
+    }
+
+    .notice-board { /* table은 원래 width를 100% 가지지 않고 콘텐츠가 테이블의 너비를 결정 */
+        border-top: 2px solid #8cba35;
+        width: 100%;
+        /* 셀의 경계선 병합 */ 
+        border-collapse: collapse; 
+        /* 콘텐츠의 크기가 커졌을 때 다른 테이블의 공간을 밀어내지 않게 하기 */
+        table-layout: fixed;
+        /* 다른 테이블의 공간을 침범하는 나머지 글자들은 생략 부호로 나타내기 */
+    }
+
+        .notice-board>tr {
+            height: 30px;
+            line-height: 30px; /* tr은 경계선을 갖지 않음 */
+        }
+
+        .notice-board td {
+            text-align: center;
+            border-bottom: 1px solid #e9e9e9; /* 표의 하단 경계선을 주려면 td에 설정해야 함 */
+            border: 1px solid blue;
+            padding: 0;
+        }
+
+        .notice-board td.w-1 {
+            width: 60px;
+        }
+
+        .notice-board td.w-2 {
+            width: 100px;
+        }
 
 #footer {
     background-color: #313131;
     grid-area: footer;
 }
-
-/* @media screen and (min-width: 500px) {
-   
-}  */
 
 @media screen and (max-width: 960px) {
     .float-content {
@@ -160,7 +229,7 @@ ul {
     font-weight: bold;
     font-size: 15px;
    
-    position: absolute; /* relative를 주게 되면 static 위치에서 left, t */
+    position: absolute; /* relative를 주게 되면 static 위치에서 left, top 적용 */
     left: 200px;
     top: 27px;
 }
@@ -277,52 +346,67 @@ ul {
             height: 17px;
         }
 
-.breadcrumb {
-    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 10px;
-    font-weight: bold;
-    color: #979797;
-    display: inline-block;
-}
-
-    .breadcrumb>ol {
-        display: flex;
-        list-style: none;
-        padding-left: 0;
-    }
-
-        .breadcrumb>ol>li {
-            padding-left: 10px;
-            background: url(../images/icon-path.png) no-repeat 0px center;
-        }
-
-        .breadcrumb>ol>li:first-child {
-            padding-left: 20px;
-            background: url(../images/icon-home.png) no-repeat 0px center;
-        }
+/* ------------------------------------------------------------------- */
 
 #aside>h1 {
     font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 24px;
     font-weight: bold;
     color: black;
+
+    margin-top: 43px;
 }
 
-    .aside-main-menu li {
+.aside-menu {
+    margin-top: 30px;
+}
+
+.aside-menu>h1 {
+    font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;   
+    padding-left: 26px;
+    background: url(../images/icon-recommend.png) no-repeat 0px center;
+}
+
+.aside-menu>ul {
+    margin-top: 10px;
+}
+
+/* ------------------------------------------------------------------- */
+
+.main-aside-menu {
+    margin-top: 45px;
+}
+
+.main-aside-menu > h1 {
+    color:#ffffff;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+    font-size:12px;
+    font-weight: bold;
+    text-shadow: 0.5px 0.5px 1px#000000;
+    background:url(../images/bg-aside-sub-title.png) no-repeat 0px 0px;
+}
+
+.main-aside-menu li {
         height: 26px;
+        line-height: 26px;
         background: url(../images/bg-aside-menu-hsp.png) no-repeat center bottom;
     }
 
-    .aside-main-menu a {
+    .main-aside-menu a {
         font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: bold;
         font-size: 11px;
         color: #808080;
         padding-left: 26px;
     }
-
-    .aside-main-menu a:hover,
-    .aside-main-menu a.current {
+    
+    .main-aside-menu a:hover,
+    .main-aside-menu a.current {
         background: url(../images/icon-current.png) no-repeat 13px center;
     }
+    
     
