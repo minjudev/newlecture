@@ -1,3 +1,50 @@
+function f() {
+    a = 100;
+}
+
+f();
+console.log(a);
+
+function f1() {
+    // x 앞에 var를 쓰지 않으면 오류가 나지 않음
+    // window.x = 1이라고 인식되기 때문에
+    // 전역변수에 x를 추가한 것임
+    x = 1;
+    return x;
+}
+
+f1();
+// 여기서도 window.x가 출력됨
+console.log(x);
+
+var x = 1;
+console.log(window.x);
+
+// var add = new Function("x, y", "return x+y;");
+
+// 오류 발생 O
+// add라는 변수는 준비되어있지만 변수가 아직 function이 아님
+// undefined인 add를 함수처럼 쓰려고 하니까 오류 발생
+// var result = add(3, 4);
+
+// var add = function(x, y) {
+//     return x + y;
+// };
+
+// console.log(result);
+
+// 오류 발생 X
+// add라는 변수가 선언됨과 동시에 함수가 대입됨
+var result = add(3, 4);
+
+function add(x, y) {
+    return x + y;
+}
+
+console.log(result);
+
+// -----------------------------------------------------------------------------------
+
 var json = `{"kor": 90}`;
 var data = JSON.parse(json);
 console.log(data.kor); // 90
