@@ -1,16 +1,33 @@
-// --- Brower Object -----------------------------------------------------------------------------------
+// onclick 이벤트 함수 작성
+function printSum() {
+    var x, y;
+    x = prompt('x 값을 입력하세요', 0);
+    y = prompt('y 값을 입력하세요', 0);
+    
+    x = parseInt(x);
+    y = parseInt(y);
+    alert(x+y);
+}
 
-var a = 3;
-var b = 0;
-window.alert(a+b);
+var html = "<span>안녕하세요!</span>";
+asideTitle.innerHTML = html;
+// window.document.write(html);
 
-var x, y;
-x = prompt("x 값을 입력하세요", 0);
-y = prompt("y 값을 입력하세요", 0);
+// --- Browser Object -----------------------------------------------------------------------------------
+var result = window.confirm("정말 삭제하시겠습니까?");
+console.log(result);
 
-x = parseInt(x);
-y = parseInt(y);
-alert(x+y);
+// var a = 3;
+// var b = 0;
+// window.alert(a+b);
+
+// var x, y;
+// x = prompt("x 값을 입력하세요", 0);
+// y = prompt("y 값을 입력하세요", 0);
+
+// x = parseInt(x);
+// y = parseInt(y);
+// alert(x+y);
 
 // --- 함수 -----------------------------------------------------------------------------------
 
