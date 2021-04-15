@@ -33,10 +33,12 @@ public class Calc extends HttpServlet {
 		PrintWriter out = resp.getWriter();		
 		
 		// 사용자에게 덧셈을 할 수 있는 UI를 다시 돌려주기
+		// Jasper: JSP를 서블릿으로 변환해줌
+		// JSP를 사용해 아래 과정을 단순하게 할 수 있음
 		out.write("<!DOCTYPE html>");
 		out.write("<html>");
 		out.write("<head>");
-//		out.write("<meta charset=\"UTF-8\">"); /*브라우저에게 내 문서는 UTF로 만들어졌다고 알려주는 것, 브라우저가 문서를 읽을 때 UTF-8로 읽음*/
+		out.write("<meta charset=\"UTF-8\">"); /*브라우저에게 내 문서는 UTF로 만들어졌다고 알려주는 것, 브라우저가 문서를 읽을 때 UTF-8로 읽음*/
 		out.write("<title>Insert title here</title>");
 		out.write("</head>");
 		out.write("<body>");
@@ -90,7 +92,6 @@ public class Calc extends HttpServlet {
 		// POST 요청으로 왔지만 새롭게 GET 요청을 하고 싶을 때 사용
 		// 3번을 이용해서 url을 보낼 때 데이터값을 함께 보내자.
 		resp.sendRedirect("/add?r="+result);
-		
 		
 //		}	
 	}
