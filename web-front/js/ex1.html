@@ -8,6 +8,74 @@
     <script type="text/javascript" src="ex1.js"></script>
 </head>
 <body>
+    <section id="ex4">
+        <style>
+            #ex4 .container {
+                width: 500px;
+                height: 300px;
+                background-color: rgb(173, 172, 172);
+                position: relative;
+            }
+
+            #ex4 .box {
+                width: 100px;
+                height: 100px;
+                background-color: rgb(250, 75, 21);
+                color: #fff;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 100px;
+                border-radius: 50px;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+
+            #ex4 .box2 {
+                background-color: rgb(252, 226, 81);
+            }
+        </style>
+		<h1>css 속성 다루기</h1>
+        <div>
+            <input type="button" value="click">
+        </div>
+		<div class="container">
+            <div class="box box1">1</div>
+            <div class="box box2">2</div>
+		</div>
+	</section>
+    <hr>
+    <section id="ex3">
+        <!--원래 style 태그는 body 내에 사용 불가-->
+        <style>
+            #ex3 .span {
+                color: rgb(248, 76, 76);
+                font-weight: bold;
+            }
+
+            #ex3 .btn {
+                border: 1px solid gray;
+                border-radius: 5px;
+                padding: 5px 10px;
+                cursor: pointer;
+                transition: 200ms;
+            }
+
+            #ex3 .btn:hover {
+                /* transition: 200ms; */
+                background-color: rgb(245, 95, 69);
+                color: #fff;
+            }
+        </style>
+		<h1>카운트다운</h1>
+		<div>
+            <label>남은 시간</label>
+            <span class="span">60</span>
+            <span class="btn">카운트다운</span>
+		</div>
+	</section>
+    <hr>
     <section id="ex2">
 		<h1>계산기</h1>
 		<div>
