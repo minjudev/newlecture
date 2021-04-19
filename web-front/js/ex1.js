@@ -1,17 +1,63 @@
 window.addEventListener("load", function() {
+    var section = document.querySelector("#ex5");
+
+    var container = section.querySelector(".container");
+    var btnAdd = section.querySelectorAll(".btn")[0];
+    var btnDel = section.querySelectorAll(".btn")[1];
+    var btnClone = section.querySelectorAll(".btn")[2];
+
+    btnAdd.onclick = function() {
+        // 메모리에 없는 객체를 메모리에 추가해보자
+        // 1. 엘리먼트 객체 생성하기 -> 생성하는 것은 다큐먼트 객체의 기능
+        // var img = document.createElement("img"); /*메모리에는 올라가 있지만 화면에는 나오지 않은 상태*/
+        // document.createTextNode();
+        var box = document.createElement("div");
+
+        // 2. 엘리먼트 객체의 속성 설정하기
+        // img.src = "../images/1.jpg"
+        box.style.width = "100px";
+        box.style.height = "100px";
+        box.style.backgroundColor = "rgb(252, 226, 81)";
+        box.style.borderRadius = "50px";
+
+        // 3. 엘리먼트 객체를 문서에 추가하기 -> 메모리 상에 존재하는 것이 화면에 출력됨
+        // container.appendChild(img); 
+        container.appendChild(box);
+    };
+
+    btnDel.onclick = function() {
+        console.log("Test");
+    };
+
+    btnClone.onclick = function() {
+        console.log("Test");
+    };
+});
+
+// ------------------------------------------------------------------------
+
+window.addEventListener("load", function() {
     var section = document.querySelector("#ex4");
     var span = section.querySelector(".container");
     var boxes = section.querySelectorAll(".box");
     var button = section.querySelector("input[value=click]");
-    var box1Left = boxes[0].style.left;
     
+    // 이전에는 css에서 초기화된 값을 자바스크립트로 얻을 수 없었음
     button.onclick = function() {
-        window.setInterval(function() {
-            box1Left++;
-            console.log(box1Left);
-            boxes[0].style.left = String(box1Left) + "px";
+        var box = boxes[0];
+        let boxStyle = window.getComputedStyle(box);
+        var left = parseInt(boxStyle.getPropertyValue("left"));
+
+        // 타이머 작동을 멈출 수 있음
+        var tid = window.setInterval(function() {
+            left++;
+            // console.log(left);
+            boxes[0].style.left = left + "px";
+
+            if(left == 400)
+                clearInterval(tid);
         }, 17);
-    }
+    };
 });
 
 // ------------------------------------------------------------------------
