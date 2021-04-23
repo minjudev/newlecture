@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="../css/style.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/list.js"></script>
 </head>
 
 <body>
     <div id="root">
         <header id="header">
             <div class="float-content">
-           
                 <h1 class="logo"><img src="../images/logo.png" alt="뉴렉처 온라인"></h1>
                 <section>
                     <h1 class="d-none">헤더</h1>
-                    <nav class="main-menu">
+                    <nav class="main-menfu">
                         <h1 class="d-none">메인 메뉴</h1>
                         <ul>
                             <li><a class="redsun" href="" dir="ltr">학습가이드</a></li>
@@ -64,9 +64,9 @@
         <div id="body">
             <div class="float-content">
                 <aside id="aside">
-                    <h1 id="asideTitle" onclick="printSum()">고객센터</h1>
+                    <h1 id="aside-title">고객센터</h1>
                     <nav class="main-aside-menu">
-                        <h1>고객센터 메뉴</h1>
+                        <h1 id="memberMenu">고객센터 메뉴</h1>
                         <ul>
                             <li><a href="list.html">공지사항</a></li>
                             <li><a class="current" href="">자주하는 질문</a></li>
@@ -96,7 +96,15 @@
                         </section>
 
                         <section>
-                            <h1 class="main-title mt-3">공지사항</h1>
+                            <h1 class="main-title">공지사항</h1>
+                            
+                            <section class="search-form">
+                                <h1 class="d-none">검색폼</h1>
+                                <form action=""></form>
+                                <form action=""></form>
+                                <div></div>
+                            </section>
+                            
                             <table class="table mt-3">
                                 <thead>
                                     <tr>
@@ -164,6 +172,5 @@
             </div>
         </footer>
     </div>
-    <script type="text/javascript" src="../js/index.js"></script>
 </body>
 </html>

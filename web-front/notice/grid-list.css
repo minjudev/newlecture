@@ -74,9 +74,9 @@ html, body {
             /* justify-items: center; 기본형: stretch */
                                     /* center: 콘텐츠가 가운데로 모임 */
         /* 2. block 축(수직) 정렬 */
-            /* align-content: ; */
             /* align-content: center;
-            align-items: start; */
+            align-items: start; */ 
+            /* grid 정렬에서는 flex-start 및 flex-end 용어 사용하지 않기 */
 }
 
 .box1 {

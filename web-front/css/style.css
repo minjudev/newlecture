@@ -19,14 +19,24 @@ ul, ol {
 
 /* ----------------------- common(base) style -------------------------- */
 
+/* html 전체 범위에 해당되는 root */
+/* html 태그보다 더 넓게 감싸는 태그: :root */
+:root {
+    --color-basic: #979797;
+    --color-strong: #ff6a00;
+    --bg-color-basic: #fff;
+    --bg-color-light: #e9e9e9;
+    --bg-color-dark: #313131;
+}
+
 body {
     font-family: "돋음", Arial, Helvetica, sans-serif;
     font-size: 11px;
-    color: #979797;
+    color: var(--color-basic);
 }
 
 a {
-    color: #979797;
+    color: var(--color-basic);
 }
 
 /* ----------------------- utils style -------------------------- */
@@ -41,8 +51,25 @@ a {
     text-overflow: ellipsis !important; /* 숨겨진 부분은 생략 표시 */
 }
 
+.text-strong {
+    color: var(--color-strong);
+    font-weight: bold;
+}
+
 .text-align-left {
     text-align: left !important;
+}
+
+.mt-2 {
+    margin-top: 5px !important;
+}
+
+.mt-3 {
+    margin-top: 10px !important;
+}
+
+.mt-4 {
+    margin-top: 15px !important;
 }
 
 /* ----------------------- content block style -------------------------- */
@@ -134,13 +161,13 @@ a {
 }
 
 #header {
-    background-color: white;
+    background-color: var(--bg-color-basic);
     grid-area: header;
 }
 
 #visual {
     border-top: 3px solid #8CBA34;
-    background: #313131 url("../images/bg-visual.png") no-repeat center;
+    background: var(--bg-color-dark) url("../images/bg-visual.png") no-repeat center;
     grid-area: visual;
 }
 
@@ -169,11 +196,15 @@ a {
 }
 
 #main {
+    position: relative;
     grid-area: main;
     padding: 45px 0px 50px 35px;
 }
 
     .breadcrumb {
+        position: absolute;
+        top: 58px;
+        right: 0px;
         font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-size: 10px;
         font-weight: bold;
@@ -196,6 +227,7 @@ a {
                 background: url(../images/icon-home.png) no-repeat 0px center;
             }
 
+            
     .main-title {
         font-family: "맑은 고딕", "고딕", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         color: #646464;
@@ -204,6 +236,36 @@ a {
         padding-left: 25px;
         background: url(../images/icon-main-title.png) no-repeat 0px center;
     }
+
+    .search-form {
+        display: flex;
+        right: 0px;
+        margin-top: 26px;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+        .search-form>:nth-child(2) {
+            border: 1px solid #8cba35;
+            width: 50px;
+            height: 18px;
+            right: 0px;
+            margin-right: 5px;
+        }
+
+        .search-form>:nth-child(3) {
+            border: 1px solid #8cba35;
+            width: 140px;
+            height: 18px;
+            right: 0px;
+            margin-right: 5px;
+        }
+        
+        .search-form>:nth-child(4) {
+            background: url(../images/btnSearch.png) no-repeat center;
+            height: 23px;
+            width: 49px;
+        }
     
 /* .page-status {
     text-align: right;
@@ -218,9 +280,40 @@ a {
     justify-content: flex-end;
 } */
 
+
 .page-status>div {
     text-align: right;    
 }
+
+.pager {
+    display: flex;
+    justify-content: center;
+}
+
+.pager>:nth-child(2) {
+    height: 15px;
+    width: 15px;
+    background: url(../images/btnPrev.png) no-repeat center;
+}
+
+.pager>:nth-child(4) {
+    height: 15px;
+    width: 15px;
+    background: url(../images/btnNext.png) no-repeat center;
+}
+
+.pager>ul {
+    display: flex;
+    height: 15px;
+    margin: 0 4px;
+}
+
+    .pager li {
+        width: 15px; /*부모의 부모에 flex가 설정되어있으면 flex-basis로 했을 때 너비가 제대로 나오지 않음*/
+        text-align: center;
+        line-height: 15px;
+        /* border: 1px solid #000; */
+    }
 
 #footer {
     background-color: #313131;
