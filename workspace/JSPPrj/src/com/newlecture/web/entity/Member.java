@@ -34,6 +34,12 @@ public class Member {
 		this.address = address;
 	}
 
+//	public Member(int id, String nickName, String pwd) {
+//		this.id = id;
+//		this.nickName = nickName;
+//		this.pwd = pwd;
+//	}
+
 	public int getId() {
 		return id;
 	}
@@ -46,7 +52,7 @@ public class Member {
 		return nickName;
 	}
 
-	public void setNicName(String nickName) {
+	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
 
