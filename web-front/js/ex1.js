@@ -1,37 +1,166 @@
 window.addEventListener("load", function() {
+    var section = document.querySelector("#ex8");
+    
+    var product = section.querySelector(".product");
+    var count = 0;
+    product.onclick = function(e) {
+        var item = e.target;
+        if(!item.classList.contains("up") &&
+        !item.classList.contains("down") && 
+        !item.classList.contains("current"))
+            return;
+
+        if(item.classList.contains("up")) {
+            var input = item.parentNode.querySelector("input");
+            input.value = parseInt(input.value) + 1;
+            // item.previousElementSibling.value = count++;
+        } else if(item.classList.contains("down")) {
+            var input = item.parentNode.querySelector("input");
+            input.value = parseInt(input.value) - 1;
+            // item.previousElementSibling.previousElementSibling.value = count--;
+        } else if(item.classList.contains("current")) {
+            item.parentElement.style.borderStyle = "dotted";
+        }
+    }
+});
+
+// ------------------------------------------------------------------------
+
+window.addEventListener("load", function() {
+    var section = document.querySelector("#ex7");
+    
+    var accordion = section.querySelector(".accordion");
+    accordion.onclick = function(e) {
+        // 1. title이 아니면 return
+        if(!e.target.classList.contains("title"))
+            return;
+
+        // 2. target 동생의 d-none toggle
+        selected = e.target;
+        selected.nextElementSibling.classList.toggle("d-none");
+    }
+});
+
+// ------------------------------------------------------------------------
+
+window.addEventListener("load", function() {
+    var section = document.querySelector("#ex6");
+
+    var container = section.querySelector(".container");
+    var btnDel = section.querySelector(".btn-del");
+    var btnClone = section.querySelector(".btn-clone");
+    var btnChange = section.querySelector(".btn-change");
+
+    var selected = null;
+
+    // 클릭 이벤트가 발생하면 부가적으로 전달해주는 데이터(이벤트에 대한 정보가 담겨있는 객체 - 이벤트 객체)가 있음
+    container.onclick = function(e) {
+        if(!e.target.classList.contains("box"))
+            return;
+
+        // console.log(e.target); // 이 때 원을 클릭했으면 컨테이너는 클릭되지 않아야 함, 하지만 컨테이너도 클릭됨 -> 버블링
+        if(selected != null && selected != e.target)
+            selected.classList.remove("selected");
+        
+        selected = e.target;
+        selected.classList.toggle("selected");
+
+        // if(selected.classList.containe("selected"))
+        //     selected.classList.remove("selected");
+        // else 
+        //     selected.classList.add("selected");
+    }
+
+    // var boxes = container.querySelectorAll(".box");
+    // Closure : 아우터 영역의 자원이 해제될 수 있게 하는 키를 가지는 함수
+    // for(let i=0; i<3; i++) { // for문이 반복될 때마다 함수가 3개 만들어짐
+    //     boxes[i].onclick = function() {
+    //         selected = boxes[i]; // i는 참조라서 그게 가리키는 값이 3이 됨
+    //         // i를 값 변수로 사용할 수 있게 하기 -> let 사용
+    //         console.log(selected);
+    //         selected.style.backgroundColor = "red";
+    //     } 
+    // } // 3이라는 값이 i에 있는 채로 계속 존재하게 됨
+
+    btnDel.onclick = function() {
+        if(selected != null)
+            selected.remove();
+    };
+
+});
+
+// ------------------------------------------------------------------------
+
+window.addEventListener("load", function() {
     var section = document.querySelector("#ex5");
 
     var container = section.querySelector(".container");
     var btnAdd = section.querySelectorAll(".btn")[0];
     var btnDel = section.querySelectorAll(".btn")[1];
     var btnClone = section.querySelectorAll(".btn")[2];
+    var btnChange = section.querySelectorAll(".btn")[3];
+
+    var idInput = section.querySelector(".id-input");
+    var colorInput = section.querySelector(".color-input");
 
     btnAdd.onclick = function() {
         // 메모리에 없는 객체를 메모리에 추가해보자
         // 1. 엘리먼트 객체 생성하기 -> 생성하는 것은 다큐먼트 객체의 기능
         // var img = document.createElement("img"); /*메모리에는 올라가 있지만 화면에는 나오지 않은 상태*/
         // document.createTextNode();
-        var box = document.createElement("div");
+        // var txt = document.createTextNode("1");
+        var div = document.createElement("div");
 
         // 2. 엘리먼트 객체의 속성 설정하기
         // img.src = "../images/1.jpg"
-        box.style.width = "100px";
-        box.style.height = "100px";
-        box.style.backgroundColor = "rgb(252, 226, 81)";
-        box.style.borderRadius = "50px";
+        div.style.width = "100px";
+        div.style.height = "100px";
+        div.style.backgroundColor = colorInput.value;
+        div.style.borderRadius = "50px";
+        div.style.textAlign = "center";
+        div.style.color = "#fff";
+        div.style.lineHeight = "100px";
+        div.style.fontWeight = "bold";
+        
+        // div.appendChild("1");
+        div.append(idInput.value);
 
         // 3. 엘리먼트 객체를 문서에 추가하기 -> 메모리 상에 존재하는 것이 화면에 출력됨
         // container.appendChild(img); 
-        container.appendChild(box);
+        // container.appendChild(div); // appendChild 사용 시에는 원하는 노드 객체를 직접 1번처럼 만들어야 함
+        container.append(div); // append 사용 시에는 텍스트는 2번처럼 바로 추가 가능
+        // container.append([div1, div2, div3]); // 노드 객체 여러 개를 한번에 추가 가능
+                                                 // json에서 배열 객체를 만드는 방법
     };
 
     btnDel.onclick = function() {
-        console.log("Test");
+        var div = container.querySelector("div:first-child");
+        div.remove();
+        // container.removeChild(div);
     };
 
     btnClone.onclick = function() {
-        console.log("Test");
+        var div = container.querySelector("div:first-child");
+        var clone = div.cloneNode(true); // 자식까지 복제됨
+        // var clone = div.cloneNode(false); // 자식은 복제되지 않음 
+        container.append(clone);
     };
+
+    btnChange.onclick = function() {
+        // var e = container.querySelectorAll("div");
+        // var e1 = e[0];
+        // var e2 = e[1];
+        var e1 = container.querySelector("div:first-child");
+        var e2 = container.querySelector("div:nth-child(2)");
+        
+        // 1. Detach
+        // 2. Replace
+        var old = container.replaceChild(e1, e2);
+
+        // 3. insertBefore
+        // container.insertBefore(old, e1); -> old version
+        e1.insertAdjacentElement('beforebegin', old);
+    }
 });
 
 // ------------------------------------------------------------------------
