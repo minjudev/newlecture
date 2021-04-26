@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.newlecture.web.entity.Member"%>
 <%@page import="com.newlecture.web.service.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,8 +8,9 @@
 <%
 	// 원래는 import하고 싶은 부분의 패키지명을 전부 적어줘야 함 -> Ctrl + space로 대신
 	MemberService memberService = new MemberService();
-	Member[] list = memberService.getList();
-%>    
+	List<Member> list = memberService.getList();
+/* 	Member[] list = memberService.getList(); */
+ %>    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -131,10 +134,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<% for(int i=0; i<list.length; i++) {%>
+                                	<% for(Member m : list) {%>
 	                                    <tr>
-	                                        <td class="w-1"><%=i+1%></td>
-	                                        <td class="truncate text-align-left"><a href=""><%=list[i].getNickName()%></a></td>
+	                                        <td class="w-1"><%=m.getId()%></td>
+	                                        <td class="truncate text-align-left"><a href=""><%=m.getNickName()%></a></td>
 	                                        <td class="w-2">newlec</td>
 	                                        <td class="w-2">2020-12-12</td>
 	                                        <td class="w-1">1351</td>

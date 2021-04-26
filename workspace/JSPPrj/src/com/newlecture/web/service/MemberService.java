@@ -5,17 +5,21 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.newlecture.web.entity.Member;
 
 public class MemberService {
 	
-	public Member[] getList() throws ClassNotFoundException, SQLException {
+	public List<Member> getList() throws ClassNotFoundException, SQLException {
 		
 		// 배열 준비 시 공간을 정의할 수 없는 경우가 있음 - DB에서 계속 변화되는 데이터를 가져와야할 때 
 		// 가변크기 배열에 대한 필요성
-		Member[] list = new Member[21];
-		int i = 0;
+//		Member[] list = new Member[21];
+//		int i = 0;
+		
+		List<Member> list = new ArrayList<>();
 		
 		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
 //		String sql = String.format("SELECT * FROM MEMBER WHERE NICNAME='%s'", nickname);
@@ -38,7 +42,8 @@ public class MemberService {
 			member.setNickName(nickName);
 			member.setPwd(pwd);
 			
-			list[i++] = member;
+			list.add(member);
+//			list[i++] = member;
 //			list[i++] = new Member(id, nickName, pwd);
 		}
 		
