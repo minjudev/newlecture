@@ -1,25 +1,65 @@
 window.addEventListener("load", function() {
+    var section = document.querySelector("#ex9");
+    
+    var uploadBox = section.querySelector(".upload-box");
+    var selButton = section.querySelector(".btn-sel");
+    var fileButton = section.querySelector(".btn-file");
+
+    uploadBox.ondragenter = function(e) { // drag한 상태에서 enter
+        console.log("enter");
+    }
+
+    uploadBox.ondragover = function(e) { // over는 drop 존 위에 올라와있다는 의미 
+                                         // drop 존 위에 올라와있을 때, file 크기가 업로드 가능한 크기를 초과, 유효한 파일이 아니라는 것 등을 알려줄 수 있는 영역
+        e.preventDefault(); 
+        console.log("over");
+    }
+
+    uploadBox.ondragleave = function(e) { // drag한 상태에서 leave
+        console.log("leave");
+    }
+
+    uploadBox.ondrop = function(e) { // 파일은 event 객체에 포함되어 있음
+        e.preventDefault(); // 링크를 열지 않게 하기 위해 기본 행위 막기
+        console.log("drop");
+        // e.files[0];
+    }
+
+
+    selButton.onclick = function(e) {
+        var event = new MouseEvent("click", {
+            'view': window,
+            'bubbles': true, // 이벤트 버블링: true
+            'cancelable': true
+        });
+
+       fileButton.dispatchEvent(event); // 이벤트 위임 - fileButton에게 이벤트가 발생했다고 알려주는 것: 트리거
+    }
+});
+
+// ------------------------------------------------------------------------
+
+window.addEventListener("load", function() {
     var section = document.querySelector("#ex8");
     
     var product = section.querySelector(".product");
-    var count = 0;
     product.onclick = function(e) {
-        var item = e.target;
-        if(!item.classList.contains("up") &&
-        !item.classList.contains("down") && 
-        !item.classList.contains("current"))
+        var target = e.target;
+        if(!target.classList.contains("up") &&
+        !target.classList.contains("down") && 
+        !target.classList.contains("current"))
             return;
 
-        if(item.classList.contains("up")) {
-            var input = item.parentNode.querySelector("input");
+        if(target.classList.contains("up")) {
+            var input = target.parentNode.querySelector("input");
             input.value = parseInt(input.value) + 1;
             // item.previousElementSibling.value = count++;
-        } else if(item.classList.contains("down")) {
-            var input = item.parentNode.querySelector("input");
+        } else if(target.classList.contains("down")) {
+            var input = target.parentNode.querySelector("input");
             input.value = parseInt(input.value) - 1;
             // item.previousElementSibling.previousElementSibling.value = count--;
-        } else if(item.classList.contains("current")) {
-            item.parentElement.style.borderStyle = "dotted";
+        } else if(target.classList.contains("current")) {
+            target.parentElement.classList.toggle("current");
         }
     }
 });
