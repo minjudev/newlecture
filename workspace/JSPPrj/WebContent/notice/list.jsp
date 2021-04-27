@@ -1,15 +1,22 @@
+<%@page import="com.newlecture.web.entity.Notice"%>
+<%@page import="com.newlecture.web.service.NoticeService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.newlecture.web.entity.Member"%>
-<%@page import="com.newlecture.web.service.MemberService"%>
+<%-- <%@page import="com.newlecture.web.entity.Member"%>
+<%@page import="com.newlecture.web.service.MemberService"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+	String f = request.getParameter("f");
+	String q = request.getParameter("q");
+	
+	System.out.println(f);
+	System.out.println(q);
+
 	// 원래는 import하고 싶은 부분의 패키지명을 전부 적어줘야 함 -> Ctrl + space로 대신
-	MemberService memberService = new MemberService();
-	List<Member> list = memberService.getList();
-/* 	Member[] list = memberService.getList(); */
+	NoticeService noticeService = new NoticeService();
+	List<Notice> list = noticeService.getList(f, q); // 사용자가 검색한 결과 얻게 하기
  %>    
 
 <!DOCTYPE html>
@@ -117,10 +124,18 @@
                             <h1 class="main-title">공지사항</h1>
                             
                             <section class="search-form">
-                                <h1 class="d-none">검색폼</h1>
-                                <form action=""></form>
-                                <form action=""></form>
-                                <div></div>
+                                <h1>검색폼</h1>
+                                <form action="list.jsp" method="get"> <!-- action을 생략하면 현재 url과 같은 주소로 요청이 감 -->
+                                	<label class="d-none">검색 분류</label>
+                                	<select name="f">
+                                		<option value="">분류 선택</option> <!-- value를 비워놓으면 분류 선택칸을 선택 안했음을 알 수 있음 -->
+                                		<option value="title">제목</option> <!-- value 지정 시 value 값이 감, value 지정하지 않으면 태그 내의 값인 '제목'이 감 -->
+                             			<option value="writer_id">작성자</option>
+                                	</select>
+                                	<label class="d-none">검색어</label>
+                                	<input type="text" name="q">
+                                	<input type="submit" value="검색">
+                                </form>
                             </section>
                             
                             <table class="table mt-3">
@@ -134,14 +149,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<% for(Member m : list) {%>
+                                	<% for(Notice n : list) {%>
 	                                    <tr>
-	                                        <td class="w-1"><%=m.getId()%></td>
-	                                        <td class="truncate text-align-left"><a href=""><%=m.getNickName()%></a></td>
-	                                        <td class="w-2">newlec</td>
-	                                        <td class="w-2">2020-12-12</td>
-	                                        <td class="w-1">1351</td>
-	                                    </tr>
+	                                        <td class="w-1"><%=n.getId()%></td>
+	                                        <td class="truncate text-align-left"><a href=""><%=n.getTitle()%></a></td>
+	                                        <td class="w-2"><%=n.getWriterId()%></td>
+	                                        <td class="w-2"><%=n.getRegDate()%></td>
+	                                        <td class="w-1"><%=n.getHit()%></td>
+	                                    </tr> 
                                     <% }%>
                                 </tbody>
                             </table>
