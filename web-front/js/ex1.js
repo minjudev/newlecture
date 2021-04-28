@@ -5,26 +5,75 @@ window.addEventListener("load", function() {
     var selButton = section.querySelector(".btn-sel");
     var fileButton = section.querySelector(".btn-file");
 
+
+    // 1. DND로 이미지 업로드하기
     uploadBox.ondragenter = function(e) { // drag한 상태에서 enter
-        console.log("enter");
+        console.log("enter"); // 한 번만 실행되므로 지속적으로 데이터의 유효성을 확인하기 어려움 -> dragover로 확인하기
     }
 
     uploadBox.ondragover = function(e) { // over는 drop 존 위에 올라와있다는 의미 
                                          // drop 존 위에 올라와있을 때, file 크기가 업로드 가능한 크기를 초과, 유효한 파일이 아니라는 것 등을 알려줄 수 있는 영역
         e.preventDefault(); 
-        console.log("over");
+        
+        var valid = e.dataTransfer.types.indexOf("Files") >= 0// 배열에 해당 값이 없으면 -1 반환
+        console.log(valid);
+
+        if(!valid) // 유효하지 않은 데이터일 때
+            uploadBox.style.backgroundColor = "red";
+        else 
+            uploadBox.style.backgroundColor = "green";
+
+        // console.log(e.dataTransfer.files[0].size); // file이 가지고 있는 바이트 수
+                                                      // drop하기 전까지는 파일을 인식할 수 없음, drop했을 때에만 file의 size 등의 정보를 알 수 있음
     }
 
     uploadBox.ondragleave = function(e) { // drag한 상태에서 leave
+        uploadBox.style.backgroundColor = "initial";
         console.log("leave");
     }
 
     uploadBox.ondrop = function(e) { // 파일은 event 객체에 포함되어 있음
+        uploadBox.style.backgroundColor = "initial";
         e.preventDefault(); // 링크를 열지 않게 하기 위해 기본 행위 막기
-        console.log("drop");
-        // e.files[0];
+        
+        // for in 문을 통해 객체의 속성을 알아낼 수 있음
+        for(var attr in e.dataTransfer.types[0]) 
+            console.log(attr); // 키를 출력
+
+        console.log(e.dataTransfer.types);
+        console.log(e.dataTransfer.files);
+        console.log(e.dataTransfer.files[0].name);
+        console.log(e.dataTransfer.files[0].size); // file이 가지고 있는 바이트 수
+        console.log(e.dataTransfer.files[0].lastModified);
+
+        for(var k in e.dataTransfer.files[0])
+            console.log(k);
+
+        console.log(e.dataTransfer.files[0]);
     }
 
+
+    // 2. 파일 선택 버튼으로 이미지 업로드하기
+    // 파일 상자에서는 클릭이 의미가 없음
+    // fileButton.onclick = function() { // 클릭 이벤트가 트리거되었을 때도 실행됨
+    //     console.log("click");
+    // }; 
+    
+    fileButton.onchange = function(e) { // 입력(선택하는 파일)이 달라질 때마다, 선택 상자가 열리고 파일 선택하고 창이 닫혔을 때 실행됨 & 더블 클릭
+        console.log("change");
+    }; 
+
+    // fileButton을 통해 선택한 파일을 얻어낼 수 있음
+    fileButton.oninput = function(e) { // 입력이 달라질 때마다, 선택 상자가 열리고 파일 선택하고 창이 닫혔을 때 실행됨 & 더블 클릭       
+        for(var k in fileButton.files[0])
+            console.log(k); 
+            
+        // 파일 정보를 얻어내는 시점: input이 더 빠름, 일반적으로 입력상자에서 값을 꺼낼 때는 input을 사용
+        console.log(fileButton.files[0]);
+
+        console.log(e.dataTransfer.files[0]); // 이벤트 객체를 통해서는 선택한 파일을 얻어낼 수 없음
+        console.log("input"); 
+    }; 
 
     selButton.onclick = function(e) {
         var event = new MouseEvent("click", {
