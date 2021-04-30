@@ -4,12 +4,23 @@ window.addEventListener("load", function() {
 
     requestBtn.onclick = function(e) {
         var request = new /*window.*/XMLHttpRequest(); 
-        request.open("GET", "http://localhost:8080/api/notice/list"/*다른 서버에서 받은 페이지를 이 서버에서 제공하려하면 보안에 위배, 추가 설정 필요*/, true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청/ false: 동기 형식으로 요청
-        request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null)/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/;
-    
-        console.log(request.responseText); /*7번째줄을 true로 하면 8과 10번째줄이 비동기형식으로 진행, 그래서 10초를 기다리지 않아도 10번째줄이 바로 실행됨*/
-                                           /*화면을 리로드하지 않고 데이터만 가져옴, 화면 새로고침X*/
-    }
+
+		// 비동기로 했을 때의 문제점: 코드(request.send(null))가 완료되는 시점을 알 수 없음, 위 코드가 끝나는 시점에 console.log(request.responseText); 이 코드를 실행하기 위해 이벤트 함수에 넣어주기		
+		/*request.onreadystatechange = function() { // 옛날 버전
+			if(request.readyState == 4) // 데이터가 다 왔을 때 아래 코드 출력
+				console.log(request.responseText); 
+		}*/
+				
+		request.onload = function() { // 바뀐 버전
+			console.log(request.responseText); // 요청한 데이터가 다 도착했을 때 이 코드를 출력해달라
+		}
+	
+		request.open("GET", "http://localhost:8080/api/notice/list", true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값, 생략 가능)/ false: 동기 형식으로 요청
+        request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null);/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/
+        // console.log(request.responseText); /*7번째줄을 true로 하면 8(request.send(null))과 10번째줄이 비동기형식으로 진행, 그래서 10번째줄이 바로 실행됨*/
+                                              /*화면을 리로드하지 않고 데이터만 가져옴, 화면 새로고침X*/
+	}
+		
 });
 
 // ------------------------------------------------------------------------
