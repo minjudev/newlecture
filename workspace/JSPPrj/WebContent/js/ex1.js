@@ -1,6 +1,7 @@
 window.addEventListener("load", function() {
     var section = document.querySelector("#ex10");
     var requestBtn = section.querySelector(".btn-request");
+	var tbody = section.querySelector("tbody");
 
     requestBtn.onclick = function(e) {
         var request = new /*window.*/XMLHttpRequest(); 
@@ -13,14 +14,44 @@ window.addEventListener("load", function() {
 				
 		request.onload = function() { // 바뀐 버전
 			console.log(request.responseText); // 요청한 데이터가 다 도착했을 때 이 코드를 출력해달라
+											   // request.responseText: json 형태의 데이터가 통으로 옴
+			var list = JSON.parse(request.responseText);
+			/*console.log(list[0].id); // 이렇게 하면 데이터를 통이 아닌 개별로 해서 사용할 수 있음
+			console.log(list[0].regDate);	*/	
+			
+			// 1~3 모두 사용X
+			// 1. innerHTML
+			// 2. DOM을 직접 생성해서 추가
+			// 3. template을 이용한 클론
+			
+			// 4. insertAdjacentElement를 이용해 문자열로 추가
+			
+			var trEmpty = tbody.querySelector(".empty");
+			if(list.length > 0 && trEmpty != null)
+				trEmpty.remove();
+			
+			// 여러 라인, 내려쓰기, 꽂아쓰기를 지원하는 새로운 문자열 등장: ``(템플릿 문자열)
+			for(var i=0; i<list.length; i++) {
+				var tr =  `<tr>
+								<td>${list[i].id}</td>
+		    					<td>${list[i].title}</td>
+		    		   	   </tr>`;				
+				tbody.insertAdjacentHTML("beforeend", tr);
+			}
+				
+			
+			
+        	/*<tr> 
+	    		<td>1</td>
+	    		<td>안녕하세요</td>
+	    	</tr>	*/	
 		}
 	
 		request.open("GET", "http://localhost:8080/api/notice/list", true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값, 생략 가능)/ false: 동기 형식으로 요청
         request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null);/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/
         // console.log(request.responseText); /*7번째줄을 true로 하면 8(request.send(null))과 10번째줄이 비동기형식으로 진행, 그래서 10번째줄이 바로 실행됨*/
                                               /*화면을 리로드하지 않고 데이터만 가져옴, 화면 새로고침X*/
-	}
-		
+	}	
 });
 
 // ------------------------------------------------------------------------
