@@ -8,15 +8,32 @@
     pageEncoding="UTF-8"%>
     
 <%
+	String p = request.getParameter("p");
 	String f = request.getParameter("f");
 	String q = request.getParameter("q");
 	
+	System.out.println(p);
 	System.out.println(f);
 	System.out.println(q);
+	
+	// 변수 초기화: 기본 값을 설정하는 것
+	int page_ = 1; // jsp가 가지고 있는 내장 변수가 페이지라는 이름을 사용하고 있어서 오류 발생
+	String field = "title";
+	String query = "";
+	
+	// 사용자가 입력한 값으로 대치
+	if(p != null && !p.equals(""))
+		page_ = Integer.parseInt(p);
+	
+	if(f != null && !f.equals(""))
+		field = f;
+	
+	if(q != null && !q.equals(""))
+		query = q;
 
 	// 원래는 import하고 싶은 부분의 패키지명을 전부 적어줘야 함 -> Ctrl + space로 대신
 	NoticeService noticeService = new NoticeService();
-	List<Notice> list = noticeService.getList(f, q); // 사용자가 검색한 결과 얻게 하기
+	List<Notice> list = noticeService.getList(page_, field, query); // 사용자가 검색한 결과 얻게 하기
  %>    
 
 <!DOCTYPE html>
@@ -37,7 +54,7 @@
                 <h1 class="logo"><img src="../images/logo.png" alt="뉴렉처 온라인"></h1>
                 <section>
                     <h1 class="d-none">헤더</h1>
-                    <nav class="main-menfu">
+                    <nav class="main-menu">
                         <h1 class="d-none">메인 메뉴</h1>
                         <ul>
                             <li><a class="redsun" href="" dir="ltr">학습가이드</a></li>
@@ -107,10 +124,6 @@
 
                 <main id="main">
                     <section>
-                    	<% for(int i=0; i<5; i++) {%>
-	                    	<div>hello</div>                    	
-                    	<% }%>
-                    	
                         <section class="breadcrumb">
                             <h1 class="d-none">경로</h1>
                             <ol>
@@ -127,13 +140,23 @@
                                 <h1>검색폼</h1>
                                 <form action="list.jsp" method="get"> <!-- action을 생략하면 현재 url과 같은 주소로 요청이 감 -->
                                 	<label class="d-none">검색 분류</label>
+                                	<%
+                                		String selectedTitle = "";
+                                		String selectedWriterId = "";
+                                		
+                                		if(field.equals("title"))
+                                			selectedTitle = "selected";
+                                		
+                                		if(field.equals("writer_id"))
+                                			selectedWriterId = "selected";
+                                	%>
                                 	<select name="f">
                                 		<option value="">분류 선택</option> <!-- value를 비워놓으면 분류 선택칸을 선택 안했음을 알 수 있음 -->
-                                		<option value="title">제목</option> <!-- value 지정 시 value 값이 감, value 지정하지 않으면 태그 내의 값인 '제목'이 감 -->
-                             			<option value="writer_id">작성자</option>
+                                		<option <%=selectedTitle %> value="title">제목</option> <!-- value 지정 시 value 값이 감, value 지정하지 않으면 태그 내의 값인 '제목'이 감 -->
+                             			<option <%=selectedWriterId %> value="writer_id">작성자</option>
                                 	</select>
                                 	<label class="d-none">검색어</label>
-                                	<input type="text" name="q">
+                                	<input type="text" name="q" value="<%=query%>">
                                 	<input type="submit" value="검색">
                                 </form>
                             </section>
@@ -164,21 +187,24 @@
 
                         <section class="page-status mt-3">
                             <h1 class="d-none">현재 페이지 정보</h1>
+                            <% 
+                            	int count = noticeService.getCount(field, query);
+                            	int lastPage = count / 10 +  (count % 10 == 0 ? 0 : 1); // 
+                            %>
                             <div>
-                                <span class="text-strong">1</span> / 2 pages
+                                <span class="text-strong"><%=page_ %></span> / <%=lastPage %> pages 
                             </div>
                         </section>
-
                         <nav class="pager mt-3">
                             <h1 class="d-none">페이저</h1>
                             <div class="button">이전</div>
                             <ul>
-                                <li><a class="text-strong" href="">1</a></li>
-                                <li>2</li>
-                                <li>3</li>
-                                <li>4</li>
-                                <li>5</li>
-                            </ul>
+                            <%for(int i=0; i<5; i++) {%>
+                                <li><a class="<%=page_ == i+1 ? "text-strong" : "" %>" href="list.jsp?p=<%=i+1 %>&f=<%=field %>&q=<%=query %>"><%=i+1 %></a></li> <!--이렇게 해서 사용자가 검색한 결과 내에서 paging 할 수 있게 하기-->
+                            <%} %>    
+                                
+<!--                            <li><a href="list.jsp?p=5">5</a></li> 이렇게 하면 사용자가 검색한 결과에 페이징이 결합되지 못함  --> 
+	                        </ul>
                             <div class="button">다음</div>
                         </nav>
                     </section>
