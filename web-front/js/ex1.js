@@ -4,7 +4,7 @@ window.addEventListener("load", function() {
 
     requestBtn.onclick = function(e) {
         var request = new /*window.*/XMLHttpRequest(); 
-        request.open("GET", "http://localhost:8080/api/notice/list"/*다른 서버에서 받은 페이지를 이 서버에서 제공하려하면 보안에 위배, 추가 설정 필요*/, false); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청/ false: 동기 형식으로 요청
+        request.open("GET", "http://localhost:8080/api/notice/list"/*다른 서버에서 받은 페이지를 이 서버에서 제공하려하면 보안에 위배, 추가 설정 필요*/, true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값)/ false: 동기 형식으로 요청
         request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null)/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/;
     
         console.log(request.responseText); /*7번째줄을 true로 하면 8과 10번째줄이 비동기형식으로 진행*/

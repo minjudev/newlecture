@@ -29,8 +29,15 @@ public class NoticeList extends HttpServlet {
 //		out.write("sample data"); // 10초 후에 출력됨
 		
 		try {
+			
+			String p = req.getParameter("p");
+			int page = 1;
+			
+			if(p != null && !p.equals(""))
+				page = Integer.parseInt(p);
+			
 			NoticeService noticeService = new NoticeService();
-			List<Notice> list = noticeService.getList(1, "title", "");
+			List<Notice> list = noticeService.getList(page, "title", "");
 			
 			out.println(list); // println이 알아서 toString()으로 변환해서 출력해줌
 			
