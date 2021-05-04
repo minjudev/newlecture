@@ -60,7 +60,7 @@ public class NoticeService {
 			String title = rs.getString("title");
 			String writerId = rs.getString("writer_id");
 			String content = rs.getString("content");
-			Date redDate = rs.getDate("regDate");
+			Date regDate = rs.getDate("regDate");
 			int hit = rs.getInt("hit");
 			String files = rs.getString("files");
 			
@@ -70,7 +70,7 @@ public class NoticeService {
 			notice.setTitle(title);
 			notice.setWriterId(writerId);
 			notice.setContent(content);
-			notice.setRegDate(redDate);
+			notice.setRegDate(regDate);
 			notice.setHit(hit);
 			notice.setFiles(files);
 			
@@ -86,6 +86,46 @@ public class NoticeService {
 				
 	}
 
+	public Notice get(int id) throws ClassNotFoundException, SQLException {
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		String sql = "SELECT * FROM NOTICE WHERE ID = " + id; // 문자열 + 정수 -> 문자열 변환
+		
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "11111"); // 서블릿 프로세스가 끝나면 연결이 끊어짐
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		Notice notice = null;
+		
+		if(rs.next()) {
+			
+			// Notice 데이터
+			String title = rs.getString("title");
+			String writerId = rs.getString("writer_id");
+			String content = rs.getString("content");
+			Date regDate = rs.getDate("regDate");
+			int hit = rs.getInt("hit");
+			String files = rs.getString("files");
+			
+			notice = new Notice();
+			notice.setId(id);
+			notice.setTitle(title);
+			notice.setWriterId(writerId);
+			notice.setContent(content);
+			notice.setRegDate(regDate);
+			notice.setHit(hit);
+			notice.setFiles(files);
+		}
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return notice;
+	}
+	
+	
 	public int getCount(String field, String query) throws SQLException, ClassNotFoundException { // 검색한 결과값이 총 몇 페이지인지 알아내야 함
 		
 		int count = 0;
