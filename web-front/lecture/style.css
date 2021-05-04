@@ -111,21 +111,41 @@ a {
     display: flex;
 }
 
-#aside {
+#aside { /* Grid로 해결하기 */
     /* background-color: #fff; */
 }
 
 .open-lecture-content li>* {
-    margin-left: 10px;
+    
 }
 
-/* .open-lecture-content li {
-    position: relative;
-} */
+.open-lecture-content li {
+    display: grid;
+    height: 90px;
+    /*width: 100%; /*default*/
+    grid-template-columns: 90px 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "img title"
+    "img price"
+    "img info";
+    background: url(../images/lecture/bg-title-normal-box.png) no-repeat right bottom;
+}
+
+.open-lecture-content li>.title {
+    grid-area: title;
+}
 
 .open-lecture-content li>img {
-    width: 100px;
-    margin-left: 0;
-    
-    float: left;
+    /* float: left;  */
+    grid-area: img;
+    width: 100%;
+}
+
+.open-lecture-content li>.price {
+    grid-area: price;
+}
+
+.open-lecture-content li>.info {
+    grid-area: info;
 }
