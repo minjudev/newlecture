@@ -10,9 +10,20 @@
 <body>
     <section id="ex10">
         <h1>AJAX</h1>
-        <div>
-            <input class="btn-request" type="button" value="request">
-        </div>
+        <section class="search-form"> <!-- 페이지 전체가 아닌 필요한 데이터만 서버에서 가져오기 -->
+	        <h1>검색 폼</h1>
+	        <form action="list.jsp" method="get"> 
+				<label class="d-none">검색 분류</label> 
+				<select name="f">
+					<option value="">분류 선택</option>
+					<option value="title">제목</option>
+					<option value="writer_id">작성자</option>
+				</select> 
+				<label class="d-none">검색어</label> 
+				<input type="text" name="q" value="">
+				<input type="submit" value="검색">
+	        </form>
+      	</section>
         <table border="1">
         	<thead>
         		<tr>
@@ -26,6 +37,16 @@
 	        	</tr>
         	</tbody>
         </table>
+        
+        <div class="pager">
+        	<ul>
+        		<li><a href="">1</a></li> <!-- a태그: 버튼 역할 -->
+        		<li><a href="">2</a></li>
+        		<li><a href="">3</a></li>
+        		<li><a href="">4</a></li>
+        		<li><a href="">5</a></li>
+        	</ul>
+        </div>
     </section>
     <hr>
     <section id="ex9">

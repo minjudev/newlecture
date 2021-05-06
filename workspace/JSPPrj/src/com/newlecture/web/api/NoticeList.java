@@ -31,13 +31,24 @@ public class NoticeList extends HttpServlet {
 		try {
 			
 			String p = req.getParameter("p");
+			String f = req.getParameter("f");
+			String q = req.getParameter("q");
+			
 			int page = 1;
+			String field = "title";
+			String query = "";
 			
 			if(p != null && !p.equals(""))
 				page = Integer.parseInt(p);
 			
+			if(f != null && !f.equals(""))
+				field = f;
+			
+			if(q != null && !q.equals(""))
+				query = q;
+				
 			NoticeService noticeService = new NoticeService();
-			List<Notice> list = noticeService.getList(page, "title", "");
+			List<Notice> list = noticeService.getList(page, field, query);
 			
 			out.println(list); // println이 알아서 toString()으로 변환해서 출력해줌
 			

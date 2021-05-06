@@ -2,20 +2,57 @@ window.addEventListener("load", function() {
     var section = document.querySelector("#ex10");
     var requestBtn = section.querySelector(".btn-request");
 	var tbody = section.querySelector("tbody");
+	var pager = section.querySelector(".pager");
+	var fieldInput = section.querySelector(".search-form select");
+	var queryInput = section.querySelector(".search-form input[type=text]");
+	var submitButton = section.querySelector(".search-form input[type=submit]");
+	
+	submitButton.onclick = function(e) {
+		e.preventDefault();
+		
+		var field = fieldInput.value;
+		var query = queryInput.value;
+		
+		bind(`../api/notice/list?f=${field}&q=${query}`);
+	};
+	
+	pager.onclick = function(e) {
+		e.preventDefault();
+		
+/*		if(!e.target.classList.contains("page"))
+*/		if(e.target.tagName != "A")
+			return;
+		
+		// 클릭한 페이지 번호	
+		var page = e.target.innerText;
+			
+		// 현재 위치: "http://localhost:8080/js/ex1.js"
+		bind(`../api/notice/list?p=${page}`);
+	}
 
-    requestBtn.onclick = function(e) {
-        var request = new /*window.*/XMLHttpRequest(); 
+    //requestBtn.onclick = function(e) {
+    bind("http://localhost:8080/api/notice/list"); // 페이지가 로드되자마자 첫 페이지가 나오게 하기
+	//}	
+	
+	function bind(url) {
+		var request = new /*window.*/XMLHttpRequest(); 
 
 		// 비동기로 했을 때의 문제점: 코드(request.send(null))가 완료되는 시점을 알 수 없음, 위 코드가 끝나는 시점에 console.log(request.responseText); 이 코드를 실행하기 위해 이벤트 함수에 넣어주기		
 		/*request.onreadystatechange = function() { // 옛날 버전
 			if(request.readyState == 4) // 데이터가 다 왔을 때 아래 코드 출력
 				console.log(request.responseText); 
 		}*/
-				
+
 		request.onload = function() { // 바뀐 버전
-			console.log(request.responseText); // 요청한 데이터가 다 도착했을 때 이 코드를 출력해달라
-											   // request.responseText: json 형태의 데이터가 통으로 옴
-			var list = JSON.parse(request.responseText);
+			/*console.log(request.responseText); // 요청한 데이터가 다 도착했을 때 이 코드를 출력해달라
+											   // request.responseText: json 형태의 데이터가 통으로 옴*/
+			
+			// 요청하고 나서 데이터가 다 왔을 때(request.onload) tbody의 자식들을 지우기
+			// tbody의 자식들을 모두 지우기
+			tbody.innerHTML = "";
+			
+			// 새로운 목록으로 tbody를 채우기
+			var list = JSON.parse(request.responseText); // parsing을 하면 객체가 만들어짐
 			/*console.log(list[0].id); // 이렇게 하면 데이터를 통이 아닌 개별로 해서 사용할 수 있음
 			console.log(list[0].regDate);	*/	
 			
@@ -26,9 +63,9 @@ window.addEventListener("load", function() {
 			
 			// 4. insertAdjacentElement를 이용해 문자열로 추가
 			
-			var trEmpty = tbody.querySelector(".empty");
+			/*var trEmpty = tbody.querySelector(".empty");
 			if(list.length > 0 && trEmpty != null)
-				trEmpty.remove();
+				trEmpty.remove();*/
 			
 			// 여러 라인, 내려쓰기, 꽂아쓰기를 지원하는 새로운 문자열 등장: ``(템플릿 문자열)
 			for(var i=0; i<list.length; i++) {
@@ -37,22 +74,22 @@ window.addEventListener("load", function() {
 		    					<td>${list[i].title}</td>
 		    		   	   </tr>`;				
 				tbody.insertAdjacentHTML("beforeend", tr);
-			}
-				
-			
-			
-        	/*<tr> 
-	    		<td>1</td>
-	    		<td>안녕하세요</td>
-	    	</tr>	*/	
+			}			
+		
+			// 2. 요청이 다 돼서 화면이 새로 갱신되면 스크린과 아이콘을 제거한다.
 		}
 	
-		request.open("GET", "http://localhost:8080/api/notice/list", true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값, 생략 가능)/ false: 동기 형식으로 요청
+		request.open("GET", url, true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값, 생략 가능)/ false: 동기 형식으로 요청
         request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null);/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/
         // console.log(request.responseText); /*7번째줄을 true로 하면 8(request.send(null))과 10번째줄이 비동기형식으로 진행, 그래서 10번째줄이 바로 실행됨*/
                                               /*화면을 리로드하지 않고 데이터만 가져옴, 화면 새로고침X*/
-	}	
+		
+		// 1. 스크린과 아이콘을 띄운다.
+	
+	}
 });
+
+
 
 // ------------------------------------------------------------------------
 
