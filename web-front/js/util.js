@@ -38,18 +38,25 @@ function slideIn(selector) {
     }
 
     screen.onclick = function() {
-        // 역방향으로 슬라이드 되도록 애니메이션을 설정        
-        aside.style = "";
-        screen.remove();
-
-        // aside.style.left = "100%";
+        // 역방향으로 슬라이드 되도록 애니메이션 설정        
+        // aside.style = "";
+        // screen.remove();
         
-        // aside.ontransitionend = function() {
-        //     aside.style.transition = "none";
-        //     aside.style.height = "initial";
-        //     aside.style.position = "static";
-        //     aside.style.backgroundColor = "initial";
-        //     screen.style.backgroundColor = "initial";
-        // }
+        aside.style.left = "100%";
+        
+        aside.ontransitionend = function() {
+            aside.style = "";
+            // aside.style.transition = "none";
+            // aside.style.height = "initial";
+            // aside.style.position = "static";
+            // aside.style.backgroundColor = "initial";
+            screen.style.transition = ".5s";
+            screen.style.opacity = 0;
+            screen.style = "";
+
+            setTimeout(function() {
+                screen.remove();
+            }, 500);
+        }
     }
 }
