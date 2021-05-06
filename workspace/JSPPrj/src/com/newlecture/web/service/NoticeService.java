@@ -125,7 +125,6 @@ public class NoticeService {
 		return notice;
 	}
 	
-	
 	public int getCount(String field, String query) throws SQLException, ClassNotFoundException { // 검색한 결과값이 총 몇 페이지인지 알아내야 함
 		
 		int count = 0;
@@ -148,5 +147,22 @@ public class NoticeService {
 		con.close(); 
 		
 		return count;
+	}
+
+	// 이렇게 하면 update해야 할 컬럼이 많아질수록 update 메소드의 개수가 많아짐
+//	public int update(int id, String title, String content) { // update된 레코드를 반환하는 것을 기본으로 해서 반환값 int로 하기
+//
+//		int result = 0;
+//		
+//		return result;
+//	}
+	
+	// 범용으로 쓰는 update는 update하고자 하지 않는 나머지 컬럼의 데이터가 유지되지 않음
+	public int update(Notice notice) {
+		int result = 0;
+		
+		String sql = "UPDATE NOTICE SET TITLE=[], CONTENT=[], HIT=?, FILES=? WHERE ID=[]";
+		
+		return result;
 	}
 }
