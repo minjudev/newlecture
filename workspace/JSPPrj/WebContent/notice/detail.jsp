@@ -143,6 +143,9 @@
 						<div>
 							<a href="list.jsp">목록</a>
 							<a href="edit.jsp?id=<%=id%>">수정</a>
+							<!-- delete할 때 쿼리스트링과 함께 get 방식으로 보냄, 그래서 서블릿에서도 doGet 메소드로 처리 -->
+							<a href="del?id=<%=id%>" onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;">삭제</a> <!-- doGet으로 처리 -->
+                        	<!-- true를 반환하면 기본 행위(a 링크) 동작, return false: e.preventDefault()라고 생각하기-->
                         </div>
                     </section>
                 </main>
