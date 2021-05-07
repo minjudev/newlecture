@@ -3,6 +3,7 @@ package com.newlecture.web.service;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -158,10 +159,81 @@ public class NoticeService {
 //	}
 	
 	// 범용으로 쓰는 update는 update하고자 하지 않는 나머지 컬럼의 데이터가 유지되지 않음
-	public int update(Notice notice) {
+	// 전체에서 특정 부분만 바꾸더라도 전체(notice 객체)를 다 넘겨주기(나머지 컬럼이 null이 되는 것을 방지하기 위해)
+	public int update(Notice notice) throws ClassNotFoundException, SQLException {
 		int result = 0;
 		
-		String sql = "UPDATE NOTICE SET TITLE=[], CONTENT=[], HIT=?, FILES=? WHERE ID=[]";
+		// 바꿀 부분은 ?로 채워주기
+		String sql = "UPDATE NOTICE SET TITLE=?, CONTENT=?, HIT=?, FILES=? WHERE ID=?";
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";	
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "11111"); // 서블릿 프로세스가 끝나면 연결이 끊어짐
+
+		// statement 기능을 모두 가지고 있으면서 prepare라는 기능도 확장되서 가지고 있는 PreparedStatement
+		// 기존의 st는 sql을 가지고 있지 않음, 하지만 preparest는 태어날 때부터 sql을 갖게 만들어짐, 태어날 때부터 sql을 준비
+		// 데이터를 꽂아줄 수 있는 기능이 포함되어있음, 데이터를 순서대로 꽂기
+		// sql이 아직 완성되지 않은 상태이므로 실행할 때 꽂아주면 안됨
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, notice.getTitle());
+		st.setString(2,  notice.getContent());
+		st.setInt(3,  notice.getHit());
+		st.setString(4,  notice.getFiles());
+		st.setInt(5, notice.getId());
+		
+		// 실행할 때는 sql을 가지고 실행하지 않음
+		// query를 하는 건 결과집합을 만들어낼 때만 query를 함(select의 경우)
+		// st.executeQuery(); // select
+		// 업데이트된 결과의 개수(result)를 알아오게 됨
+		result = st.executeUpdate(); // update/delete/insert -> 결과집합이 없음
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
+	
+	public int insert(Notice notice) throws ClassNotFoundException, SQLException {
+		int result = 0;
+		
+		// 바꿀 부분은 ?로 채워주기
+		String sql = "INSERT INTO NOTICE(TITLE, WRITER_ID, CONTENT) VALUES(?, ?, ?)";
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";	
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "11111"); // 서블릿 프로세스가 끝나면 연결이 끊어짐
+
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, notice.getTitle());
+		st.setString(2, notice.getWriterId());
+		st.setString(3,  notice.getContent());
+		
+		result = st.executeUpdate(); // update/delete/insert -> 결과집합이 없음
+		
+		st.close();
+		con.close();
+		
+		return result; // result에 1 이상의 숫자가 아닌 유효하지 않은 숫자가 나오면 오류 발생
+	}
+	
+	// id는 유일한 식별자이므로 지워질 때 하나의 레코드만 지워질 것임
+	public int delete(int id) throws ClassNotFoundException, SQLException {
+		int result = 0;
+		
+		// 바꿀 부분은 ?로 채워주기
+		String sql = "DELETE FROM NOTICE WHERE ID=?"; // id만 넘겨받으면 됨
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";	
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "NEWLEC", "11111"); // 서블릿 프로세스가 끝나면 연결이 끊어짐
+
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, id);
+		
+		result = st.executeUpdate(); // update/delete/insert -> 결과집합이 없음
+		
+		st.close();
+		con.close();
 		
 		return result;
 	}
