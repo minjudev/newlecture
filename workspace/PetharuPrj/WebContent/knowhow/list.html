@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="list.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="list.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
@@ -63,138 +65,44 @@
                         <h1 class="d-none">노하우 게시글 목록</h1>
                         <!-- 
                         1. KnowhowService 생성 //
-                        	- 데이터 db와 연동시키기 
+                        	- DB와 연동시켜 데이터 가져오기 
                         2. Knowhow 클래스 생성 //
                         3. KnowhowList 생성 //
                         	- 화면에 출력할 데이터를 얻는 곳
                         4. list.js
-                        	- KnowhowList에서 데이터를 얻어와 화면에 출력하는 로직 짜는 곳
+                        	- KnowhowList에서 데이터를 얻어와 화면에 출력하는 로직 짜기
                         -->
-                        <div>
+                        
+                        <!-- <div>
                             <div class="img-area">
                                 <a href="detail.html">
                                 <img class="img-pet" src="../images/cat-pill.jpg">
                                 </a>
                             </div>
                             <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
+                            	<div class="knowhow-info">
+                            		<ul>
+                            			<li>
+                            				<img src="../images/view.png">
+                            				<span>26</span>
+                            			</li>
+                            			<li>
+                            				<img src="../images/heart.png">
+                            				<span>7</span>
+                            			</li>
+                            			<li>
+                            				<img src="../images/comment.png">
+                            				<span>3</span>
+                            			</li>
+                            		</ul>
+                            	</div>
+                                <div class="knowhow-title"><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
                                 <section class="flex">
                                     <div class="img-member"></div>
                                     <span class="id">id1</span>
                                 </section>
                             </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/puppy-walk.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/cat-bathroom.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/cat-pill.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/puppy-walk.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/cat-bathroom.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div><div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/cat-pill.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/puppy-walk.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="img-area">
-                                <a href="detail.html">
-                                <img class="img-pet" src="../images/cat-bathroom.jpg">
-                                </a>
-                            </div>
-                            <div class="text-area">
-                                <div><a href="detail.html">고양이 알약 먹이는 꿀팁!</a></div>
-                                <section class="flex">
-                                    <div class="img-member"></div>
-                                    <span class="id">id1</span>
-                                </section>
-                            </div>
-                        </div>
+                        </div> -->
                     </div>
                     <nav class="pager">
                         <h1 class="d-none">페이저</h1>

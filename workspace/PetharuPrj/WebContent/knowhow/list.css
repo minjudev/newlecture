@@ -239,6 +239,7 @@ button {
         border-radius: 4px;
         font-weight: bold;
         color: rgb(168, 166, 166);
+        cursor: pointer;
     }
 
     .knowhow-upload-btn {
@@ -292,18 +293,39 @@ button {
             position: relative;
             background-color: #fff;
             border-radius: 0 0 5px 5px;
-            padding: 25px 30px 20px 30px;
-            height: 60px;
+            padding: 15px 13px 15px 20px;
         }  
+        
+        	.knowhow-info>ul {
+        		display: flex;
+   				justify-content: flex-end;
+   				margin-bottom: 10px;
+        	}
+        	
+        	.knowhow-info li {
+   				display: flex;
+   				align-items: center;
+        	}
+        	
+        	.knowhow-info img {
+        		width: 15px;
+        		height: 15px;
+        		margin-right: 5px;
+        	}
+        	
+        	.knowhow-info span {
+        		font-size: 13px;
+        		margin-right: 8px;
+        	}
+        	
+        	.knowhow-info li:nth-child(3)>span:nth-child(2) {
+        		margin-right: 0px;
+        	}
 
-            .text-area>section {
-                position: absolute;
-                bottom: 20px;
-            }
-
-            .text-area>div:first-child {
+            .knowhow-title {
                 font-size: 16px;
                 font-weight: bold;
+                margin-bottom: 10px;
                 cursor: pointer;
             }
 
