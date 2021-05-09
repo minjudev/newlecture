@@ -10,6 +10,8 @@ public class Knowhow {
 	private String title;
 	private String content;
 	private Date dateTime;
+	private int hit;
+	private int like;
 	
 	public Knowhow() {
 		
@@ -23,6 +25,8 @@ public class Knowhow {
 		this.title = title;
 		this.content = content;
 		this.dateTime = dateTime;
+		this.hit = hit;
+		this.like = like;
 	}
 
 	public int getId() {
@@ -72,11 +76,27 @@ public class Knowhow {
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
+	
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
+	}
+
+	public int getLike() {
+		return like;
+	}
+
+	public void setLike(int like) {
+		this.like = like;
+	}
 
 	@Override
 	public String toString() {
-		return "Knowhow [id=" + id + ", userId=" + userId + ", pet=" + pet + ", title=" + title + ", content=" + content
-				+ ", regDate=" + dateTime + "]";
+		return "{\"id\":" + id + ", \"userId\":\"" + userId + "\", \"pet\":\"" + pet + "\", \"title\":\"" + title + "\", \"content\":\"" + content
+				+ "\", \"dateTime\":\"" + dateTime + "\", \"hit\":" + hit + ", \"like\":" + like + "}";
 	}
 	
 }

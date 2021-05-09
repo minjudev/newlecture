@@ -39,6 +39,8 @@ public class KnowhowService {
 			String title = rs.getString("title");
 			String content = rs.getString("user_id");
 			Date dateTime = rs.getDate("datetime");
+			int hit = rs.getInt("hit");
+			int like = rs.getInt("like");
 
 			// list에 담아주기
 			Knowhow knowhow = new Knowhow();
@@ -48,6 +50,8 @@ public class KnowhowService {
 			knowhow.setTitle(title);
 			knowhow.setContent(content);
 			knowhow.setDateTime(dateTime);
+			knowhow.setHit(hit);
+			knowhow.setLike(like);
 			
 			list.add(knowhow);
 		}
