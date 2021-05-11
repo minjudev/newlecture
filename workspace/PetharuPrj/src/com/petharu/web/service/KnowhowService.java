@@ -61,7 +61,50 @@ public class KnowhowService {
 		con.close();
 		
 		return list;
-		
 	}
+	
+	
+	public Knowhow get(int id) throws ClassNotFoundException, SQLException {
+	  	  
+		String sql = "SELECT * FROM KNOWHOW WHERE ID =" + id;
+			
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "PETHARU", "1357");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery(sql);
+		
+		Knowhow knowhow = null;
+		
+		if(rs.next()) {
+			
+			// Knowhow 데이터
+			String userId = rs.getString("user_id");
+			String pet = rs.getString("pet");
+			String title = rs.getString("title");
+			String content = rs.getString("user_id");
+			Date dateTime = rs.getDate("datetime");
+			int hit = rs.getInt("hit");
+			int like = rs.getInt("like");
+			
+			// list에 담아주기
+			knowhow = new Knowhow();
+			knowhow.setId(id);
+			knowhow.setUserId(userId);
+			knowhow.setPet(pet);
+			knowhow.setTitle(title);
+			knowhow.setContent(content);
+			knowhow.setDateTime(dateTime);
+			knowhow.setHit(hit);
+			knowhow.setLike(like);	  			
+		}
+		
+		rs.close();
+		st.close();
+		con.close();
+		
+		return knowhow;
+	}
+	 	
 	
 }
