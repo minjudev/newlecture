@@ -6,7 +6,9 @@ window.addEventListener("load", function() {
 	var fieldInput = section.querySelector(".search-form select");
 	var queryInput = section.querySelector(".search-form input[type=text]");
 	var submitButton = section.querySelector(".search-form input[type=submit]");
-	
+	// 현재 페이지에 대한 상태 변수 두기
+	var pageElement = pager.querySelector("a"); // 첫번째 페이지
+
 	submitButton.onclick = function(e) {
 		e.preventDefault();
 		
@@ -23,11 +25,20 @@ window.addEventListener("load", function() {
 */		if(e.target.tagName != "A")
 			return;
 		
-		// 클릭한 페이지 번호	
+		// 클릭한 페이지 번호 	
 		var page = e.target.innerText;
 			
 		// 현재 위치: "http://localhost:8080/js/ex1.js"
 		bind(`../api/notice/list?p=${page}`);
+		
+		// for문 돌려서 전체 페이지에서 text-strong 빼고, 현재 타겟 페이지에만 text-strong 주기
+/*		var as = pager.querySelectorAll("a");
+		for(var i=0; i<as.length; i++)
+			as[i].classList.remove("text-strong");*/
+			
+		pageElement.classList.remove("text-strong");
+		e.target.classList.add("text-strong");
+		pageElement = e.target;
 	}
 
     //requestBtn.onclick = function(e) {
@@ -42,7 +53,7 @@ window.addEventListener("load", function() {
 			if(request.readyState == 4) // 데이터가 다 왔을 때 아래 코드 출력
 				console.log(request.responseText); 
 		}*/
-
+		
 		request.onload = function() { // 바뀐 버전
 			/*console.log(request.responseText); // 요청한 데이터가 다 도착했을 때 이 코드를 출력해달라
 											   // request.responseText: json 형태의 데이터가 통으로 옴*/
@@ -52,7 +63,7 @@ window.addEventListener("load", function() {
 			tbody.innerHTML = "";
 			
 			// 새로운 목록으로 tbody를 채우기
-			var list = JSON.parse(request.responseText); // parsing을 하면 객체가 만들어짐
+			var list = JSON.parse(request.responseText); // JSON.parse() 메서드: JSON 문자열의 구문을 분석하고, 그 결과에서 JavaScript 값이나 객체를 생성
 			/*console.log(list[0].id); // 이렇게 하면 데이터를 통이 아닌 개별로 해서 사용할 수 있음
 			console.log(list[0].regDate);	*/	
 			
@@ -77,19 +88,62 @@ window.addEventListener("load", function() {
 			}			
 		
 			// 2. 요청이 다 돼서 화면이 새로 갱신되면 스크린과 아이콘을 제거한다.
+			screen.remove();
+		
 		}
 	
+		request.onabort = function() { // 사용자가 이벤트를 중지했을 때 실행 
+			console.log("aborted"); // 취소가 되었을 때 이 부분을 통해서 창을 닫기
+			screen.remove();
+		}
+		
 		request.open("GET", url, true); // 무엇을 달라고 할 것인지 명시, true: 비동기 형식으로 요청(기본값, 생략 가능)/ false: 동기 형식으로 요청
         request.send/*요청은 여기서 이루어짐, 서버에 요청을 보냄*/(null);/*서버에 데이터를 제출할 때는 null이 아닌 값을 보냄*/
         // console.log(request.responseText); /*7번째줄을 true로 하면 8(request.send(null))과 10번째줄이 비동기형식으로 진행, 그래서 10번째줄이 바로 실행됨*/
                                               /*화면을 리로드하지 않고 데이터만 가져옴, 화면 새로고침X*/
 		
 		// 1. 스크린과 아이콘을 띄운다.
+		var screen = document.createElement("div");
+		
+		screen.style.width = "100%";
+		screen.style.height = "100%";
+		screen.style.backgroundColor = "black";
+		screen.style.position = "absolute";
+		screen.style.left = "0px";
+		screen.style.top = "0px";
+		screen.style.opacity = 0;
+		screen.style.transition = ".5s"; /*0.5초 동안 바뀜*/
+		
+		screen.style.display = "flex";
+		screen.style.alignItems = "center";
+		screen.style.justifyContent = "center";
+		
+		var img = document.createElement("img");
+		img.src = "../images/ajax-loader.gif";
+		screen.append(img);
+		
+		var closeButton = document.createElement("input");
+		closeButton.value = "취소";
+		closeButton.type = "button";
+		closeButton.style.alignSelf = "flex-start";
+		// closeButton.style.justifyContent = "end" // flex가 아닌 grid에서만 사용 가능
+		closeButton.style.position = "absolute";
+		closeButton.style.right = "0px";
+		screen.append(closeButton);
+		
+		closeButton.onclick = function() {
+			request.abort(); // 취소한다고 하는 이벤트가 접수됨
+		}
+		
+		setTimeout(function() { /*setTimeout을 하지 않았을 때는 opacity = 0 다음에 opacity = 0.7이 덮어씌워져서 적용됨*/
+		                        /*opacity = 0과 opacity = 0.7이 동시에 적용되지 않게 하기*/           
+		    screen.style.opacity = 0.7;
+		}, 0);
+		
+		section.append(screen); // section의 막내로 들어가는 것
 	
 	}
 });
-
-
 
 // ------------------------------------------------------------------------
 

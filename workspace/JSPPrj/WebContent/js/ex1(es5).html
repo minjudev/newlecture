@@ -5,11 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="text/javascript" src="ex1.js"></script>
+    <script type="text/javascript" src="ex1(es5).js"></script>
 </head>
 <body>
     <section id="ex10">
         <h1>AJAX</h1>
+        <style>
+        	#ex10 {
+        		position: relative; /* 검은 스크린이 전체 body가 아닌 해당 section에만 뜨게 하기 */
+        	}
+        </style>
+        
         <section class="search-form"> <!-- 페이지 전체가 아닌 필요한 데이터만 서버에서 가져오기 -->
 	        <h1>검색 폼</h1>
 	        <form action="list.jsp" method="get"> 
@@ -37,16 +43,66 @@
 	        	</tr>
         	</tbody>
         </table>
-        
+        <style>
+			 ul {
+			    margin: 0;
+			    padding: 0;
+			 }
+			 
+			 a {
+			    text-decoration: none;
+			 }
+			 
+			 li {
+			    
+			    list-style: none;
+			 }
+			 
+			 .text-strong {
+			    color:#ff6a00;
+			 }
+			 
+			 .pager{
+			 	display: flex;    
+			   	justify-content: center;
+			 }
+	      
+		     .pager>:nth-child(2){
+		         height: 15px;
+		         width: 15px;
+		         background: url("../images/btnPrev.png") no-repeat center;
+		     }
+		      
+		      .pager>:nth-child(4){
+		          height: 15px;
+		          width: 15px;
+		          background: url("../images/btnNext.png") no-repeat center;
+		      }
+	      
+		      .pager>ul{
+		          display: flex;
+		          height: 15px;
+		          margin:0 4px;
+		      }
+		      
+		      .pager li{
+		          /* flex-basis: 15px; */
+		          line-height: 15px;
+		          text-align: center;
+		          width:15px;
+		          /* height: 15px; */
+		      }
+        </style>
         <div class="pager">
         	<ul>
-        		<li><a href="">1</a></li> <!-- a태그: 버튼 역할 -->
+        		<li><a class="text-strong" href="">1</a></li> <!-- a태그: 버튼 역할 -->
         		<li><a href="">2</a></li>
         		<li><a href="">3</a></li>
         		<li><a href="">4</a></li>
         		<li><a href="">5</a></li>
         	</ul>
         </div>
+        
     </section>
     <hr>
     <section id="ex9">
