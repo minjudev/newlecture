@@ -21,8 +21,8 @@
     <link href="detail.css" type="text/css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
-    <script src="detail.js"></script>
-</head>
+<!--     <script src="detail.js"></script>
+ --></head>
 <body>
     <div id="root">
         <header id="header">
