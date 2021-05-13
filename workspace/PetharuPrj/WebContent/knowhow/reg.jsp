@@ -60,10 +60,7 @@
 	                            <h1 class="sub-title">반려동물 선택</h1>
 	                            <span class="required">*</span>
 	                            <section class="pet-selecting-btn">
-	                            <%
-	                            	
-	                            
-	                            %>
+	                          		<input type="hidden" name="pet" value="dog">
 	                                <span class="select center font">강아지</span>
 	                                <span class="center font">고양이</span>
 	                            </section>
@@ -71,13 +68,13 @@
 	                        <section class="title-area">
 	                            <h1 class="sub-title">제목</h1>
 	                            <span class="required">*</span>
-	                            <input class="underline font" type="text" value="제목을 입력해주세요">
+	                            <input class="input underline font" type="text" name="title" placeholder="제목을 입력해주세요">
 	                        </section>
 	                        <section class="write-content">
 	                            <h1 class="sub-title">글 작성</h1>
 	                            <span class="required">*</span>
 	                            <div class="img-upload-btn center font">이미지 업로드</div>
-	                            <textarea class="font" name="" placeholder="내용을 입력해주세요"></textarea>
+	                            <textarea class="input font" name="content" placeholder="내용을 입력해주세요"></textarea>
 	                        </section>
 	                        <hr class="line">
 	                        <section class="button-menu">
