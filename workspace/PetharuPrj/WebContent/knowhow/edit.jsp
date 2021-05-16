@@ -19,6 +19,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="edit.css" type="text/css" rel="stylesheet">
+    <script src="edit.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
@@ -64,32 +65,53 @@
                 <main id="main">
                     <h1 class="title">PetHaru 노하우</h1>
                     <section>
-                        <section>
-                            <h1 class="sub-title">반려동물 선택</h1>
-                            <span class="required">*</span>
-                            <section>
-                                <button class="pet-btn font">강아지</button>
-                                <button class="pet-select pet-btn font">고양이</button>
-                            </section>
-                        </section>
-                        <section class="title-area">
-                            <h1 class="sub-title">제목</h1>
-                            <span class="required">*</span>
-                            <input class="with-content title-content underline font" type="text" value="<%=knowhow.getTitle()%>">
-                        </section>
-                        <section class="write-content">
-                            <h1 class="sub-title">글 작성</h1>
-                            <span class="required">*</span>
-                            <button class="img-upload-btn font">이미지 업로드</button>
-                            <textarea class="font" name="" placeholder="내용을 입력해주세요"><%=knowhow.getContent() %>  
-                            </textarea>
-                        </section>
-                        <hr class="line">
-                        <section class="button-menu">
-                            <h1 class="d-none">버튼</h1>
-                            <button class="font"><a href="list.html">취소하기</a></button>
-                            <button class="font"><a href="list.html">저장하기</a></button>
-                        </section>
+                    	<form action="edit" method="post">
+	                        <section>
+	                            <h1 class="sub-title">반려동물 선택</h1>
+	                            <span class="required">*</span>
+	                            <section class="pet-selecting-btn">
+	                            	<%
+		                        		String pet = knowhow.getPet();
+		                        		System.out.println(pet);
+		                        		String dog = "";
+		                        		String cat = "";
+		                        		String value = "";
+		                        		
+		                        		if(pet.equals("dog"))
+		                        			dog = "select";
+		                        			value = "dog";
+		                        		
+		                        		
+		                        		if(pet.equals("cat"))
+		                        			cat = "select";
+		                        			value = "cat";
+		                        	%>
+	                            
+	                          		<input type="hidden" name="pet" value="<%=value%>">
+	                          		<!-- 등록 시 선택한 동물의 종류를 수정 페이지에서도 동일하게 출력 -->
+	                                <span class="<%=dog %> center font">강아지</span>
+	                                <span class="<%=cat %> center font">고양이</span>
+	                            </section>
+	                        </section>
+	                        <section class="title-area">
+	                            <h1 class="sub-title">제목</h1>
+	                            <span class="required">*</span>
+	                            <input class="input underline font" type="text" name="title" value="<%=knowhow.getTitle()%>">
+	                        </section>
+	                        <section class="write-content">
+	                            <h1 class="sub-title">글 작성</h1>
+	                            <span class="required">*</span>
+	                            <div class="img-upload-btn center font">이미지 업로드</div>
+	                            <textarea class="input font" name="content"><%=knowhow.getContent() %></textarea>
+	                        </section>
+	                        <hr class="line">
+	                        <section class="button-menu">
+	                            <h1 class="d-none">버튼</h1>
+	                            <a class="btn center font" href="list.jsp">취소하기</a>
+	                            <input type="hidden" name="id" value="<%=id %>">
+	                            <button class="btn font">저장하기</button>
+	                        </section>
+                        </form>
                     </section>
                 </main>
             </div>
