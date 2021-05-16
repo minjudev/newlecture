@@ -158,6 +158,25 @@ public class KnowhowService {
 		
 		return result;
 	}
-	 	
-	
+
+
+	public int delete(int id) throws ClassNotFoundException, SQLException {
+		int result  = 0;
+		
+		String sql = "DELETE KNOWHOW WHERE ID=?";
+		
+		String url = "jdbc:oracle:thin:@hi.namoolab.com:1521/xepdb1";
+		Class.forName("oracle.jdbc.OracleDriver"); 
+		Connection con = DriverManager.getConnection(url, "PETHARU", "1357");
+		
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, id);
+		
+		result = st.executeUpdate();
+		
+		st.close();
+		con.close();
+		
+		return result;
+	}
 }
