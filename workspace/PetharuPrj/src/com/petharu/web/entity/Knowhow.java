@@ -5,28 +5,25 @@ import java.util.Date;
 public class Knowhow {
 
 	private int id;
-	private String userId;
-	private String pet;
+	private int memberId;
+	private int knowhowTypeId;
 	private String title;
 	private String content;
-	private Date dateTime;
+	private Date regDate;
 	private int hit;
-	private int like;
 	
 	public Knowhow() {
 		
 	}
 
-	public Knowhow(int id, String userId, String pet, String title, String content, Date dateTime) {
-		super();
+	public Knowhow(int id, int memberId, int knowhowTypeId, String title, String content, Date regDate, int hit) {
 		this.id = id;
-		this.userId = userId;
-		this.pet = pet;
+		this.memberId = memberId;
+		this.knowhowTypeId = knowhowTypeId;
 		this.title = title;
 		this.content = content;
-		this.dateTime = dateTime;
+		this.regDate = regDate;
 		this.hit = hit;
-		this.like = like;
 	}
 
 	public int getId() {
@@ -37,20 +34,20 @@ public class Knowhow {
 		this.id = id;
 	}
 
-	public String getUserId() {
-		return userId;
+	public int getMemberId() {
+		return memberId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setMemberId(int memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getPet() {
-		return pet;
+	public int getKnowhowTypeId() {
+		return knowhowTypeId;
 	}
 
-	public void setPet(String pet) {
-		this.pet = pet;
+	public void setKnowhowTypeId(int knowhowTypeId) {
+		this.knowhowTypeId = knowhowTypeId;
 	}
 
 	public String getTitle() {
@@ -69,14 +66,14 @@ public class Knowhow {
 		this.content = content;
 	}
 
-	public Date getDateTime() {
-		return dateTime;
+	public Date getRegDate() {
+		return regDate;
 	}
 
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setRegDate(Date regDate) {
+		this.regDate = regDate;
 	}
-	
+
 	public int getHit() {
 		return hit;
 	}
@@ -85,18 +82,10 @@ public class Knowhow {
 		this.hit = hit;
 	}
 
-	public int getLike() {
-		return like;
-	}
-
-	public void setLike(int like) {
-		this.like = like;
-	}
-
 	@Override
 	public String toString() {
-		return "{\"id\":" + id + ", \"userId\":\"" + userId + "\", \"pet\":\"" + pet + "\", \"title\":\"" + title + "\", \"content\":\"" + content
-				+ "\", \"dateTime\":\"" + dateTime + "\", \"hit\":" + hit + ", \"like\":" + like + "}";
+		return "Knowhow [id=" + id + ", memberId=" + memberId + ", knowhowTypeId=" + knowhowTypeId + ", title=" + title
+				+ ", content=" + content + ", regDate=" + regDate + ", hit=" + hit + "]";
 	}
 	
 }

@@ -18,8 +18,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="list.css" type="text/css" rel="stylesheet">
-<!--     <script type="text/javascript" src="list.js"></script>
- -->    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script type="text/javascript" src="list.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -57,7 +57,7 @@
                         <h1 class="d-none">커뮤니티 메뉴</h1>
                         <ul>
                             <li><a href="../notice/list.html">공지사항</a></li>
-                            <li><a class="current-page" href="list.html">노하우</a></li>
+                            <li><a class="current-page" href="list.jsp">노하우</a></li>
                         </ul>
                     </nav>
                 </aside>
@@ -80,7 +80,7 @@
                         </section>
                         <section class="knowhow-upload-btn">
                             <h1 class="d-none">노하우 게시글 등록</h1>
-                            <a href="upload.html"><button class="font">노하우 등록하기</button></a>
+                            <a href="reg.jsp"><button class="font">노하우 등록하기</button></a>
                         </section>
                     </section>
                     <div class="knowhow-list">
@@ -89,10 +89,8 @@
                         1. KnowhowService 생성 //
                         	- DB와 연동시켜 데이터 가져오기 
                         2. Knowhow 클래스 생성 //
-                        3. KnowhowList 생성 //
-                        	- 화면에 출력할 데이터를 얻는 곳
-                        4. list.jsp
-                        	- KnowhowList에서 데이터를 얻어와 화면에 출력하는 로직 짜기
+                        3. list.jsp
+                        	- KnowhowService를 통해 데이터를 얻어와 화면에 출력하는 로직 짜기
                         -->
                         <% for(Knowhow k : list) { %>
 	                        <div>
@@ -110,18 +108,18 @@
 	                            			</li>
 	                            			<li>
 	                            				<img src="../images/heart.png">
-	                            				<span><%=k.getLike()%></span>
+	                            				<span>3</span>
 	                            			</li>
 	                            			<li>
 	                            				<img src="../images/comment.png">
-	                            				<span>3</span>
+	                            				<span>2</span>
 	                            			</li>
 	                            		</ul>
 	                            	</div>
 	                                <div class="knowhow-title"><a href="detail.jsp?id=<%=k.getId()%>"><%=k.getTitle()%></a></div>
 	                                <section class="flex">
 	                                    <div class="img-member"></div>
-	                                    <span class="id"><%=k.getUserId()%></span>
+	                                    <span class="id"><%=k.getMemberId()%></span>
 	                                </section>
 	                            </div>
 	                        </div>	

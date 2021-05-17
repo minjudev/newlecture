@@ -35,24 +35,22 @@ public class KnowhowService {
 			
 			// Knowhow 데이터
 			int id = rs.getInt("id");
-			String userId = rs.getString("user_id");
-			String pet = rs.getString("pet");
+			int memberId = rs.getInt("member_id");
+			int knowhowTypeId = rs.getInt("knowhow_type_id");
 			String title = rs.getString("title");
-			String content = rs.getString("user_id");
+			String content = rs.getString("content");
 			Date regDate = rs.getDate("regDate");
 			int hit = rs.getInt("hit");
-			int like = rs.getInt("like");
 
 			// list에 담아주기
 			Knowhow knowhow = new Knowhow();
 			knowhow.setId(id);
-			knowhow.setUserId(userId);
-			knowhow.setPet(pet);
+			knowhow.setMemberId(memberId);
+			knowhow.setKnowhowTypeId(knowhowTypeId);
 			knowhow.setTitle(title);
 			knowhow.setContent(content);
 			knowhow.setRegDate(regDate);
 			knowhow.setHit(hit);
-			knowhow.setLike(like);
 			
 			list.add(knowhow);
 		}
@@ -80,7 +78,7 @@ public class KnowhowService {
 		if(rs.next()) {
 			
 			// Knowhow 데이터
-			String userId = rs.getString("user_id");
+			int memberId = rs.getInt("member_id");
 			String pet = rs.getString("pet");
 			String title = rs.getString("title");
 			String content = rs.getString("content");
