@@ -12,12 +12,15 @@ window.addEventListener("load", function() {
 		detailSection.classList.remove("d-none");
 	}
 	
-	closeBtn.onclick = function() {
+	closeBtn.onclick = function(e) {
+		e.preventDefault();
+
 		background.classList.add("d-none");
 		detailSection.classList.add("d-none");
 	}
 
 	
+	let header = document.querySelector("#header");
     let modal = document.querySelector(".modal");
     let deleteBtn = document.querySelector(".delete-btn");
 
@@ -34,7 +37,10 @@ window.addEventListener("load", function() {
         if(!e.target.classList.contains("modal-close") && !e.target.classList.contains("close-btn"))
             return;
 
-        background.classList.remove("d-none");
+		header.style.zIndex = 0;
+		background.style.opacity = 0.7;
+		background.style.zIndex = 999;
+		detailSection.style.zIndex = 1000;
         modal.classList.add("d-none");
     }
 });

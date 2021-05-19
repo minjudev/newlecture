@@ -180,7 +180,7 @@ button {
 
     #main>section{
         display: flex;
-        margin: 25px 120px 0px;
+        margin: 25px 105px 0px;
     }
 
     .member-info {
@@ -217,10 +217,8 @@ button {
             margin-left: 5px;
         }
     
-        .follower-num, .follow, .follow-num {
-            padding: 0;
+        .follower, .follow {
             cursor: pointer;
-            background: none;
         }
 
     .diary-upload-btn {
@@ -247,7 +245,7 @@ button {
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
-        margin: 35px 90px;
+        margin: 20px 90px;
     }
 
         .diary-list>div {
@@ -315,10 +313,9 @@ button {
 
 .detail-section>:nth-child(2) {
 	width: 440px;
-	height: 420px;
 	box-sizing: border-box;
 	background-color: #fff;
-    padding: 15px 0 20px 30px;
+    padding: 20px 0 20px 30px;
     border-radius: 0 8px 8px 0;
 }
 
@@ -382,7 +379,7 @@ button {
 } 
 
     .detail-section .diary-content {
-        margin: 20px 0 40px 0;
+        margin: 20px 0;
         font-weight: normal;
     }
 
