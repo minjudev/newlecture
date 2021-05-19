@@ -40,6 +40,12 @@ button {
     display: flex;
 }
 
+.flex-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .align-center {
     align-items: center;
 }
@@ -314,7 +320,7 @@ button {
             color: rgb(168, 166, 166);
         }
 
-        .pet-select {
+        .select {
             background-color: rgb(250, 195, 43);
             color: white;
         }
@@ -328,8 +334,8 @@ button {
     }
 
     .text-area {
-        display: block;
-        width: 80%;
+        border: 1px solid #000;
+ 		width: 80%;
         height: 200px;
         margin: 0 auto;
         resize: none;
@@ -348,7 +354,7 @@ button {
         justify-content: center;
     }
 
-        .button-menu>button {
+        .button-menu>.btn {
             width: 150px;
             height: 40px;
             background-color: rgb(207, 204, 204);
@@ -356,20 +362,19 @@ button {
             cursor: pointer;
         }
 
-        .button-menu>button:nth-child(3) {
-            background-color: rgb(250, 195, 43);
+        .button-menu>.btn:nth-child(3) {
             color: white;
             font-weight: bold;
             font-size: 14px;
         }
 
-        .button-menu>button>a {
+        .button-menu>.btn>span {
             color: white;
             font-weight: bold;
             font-size: 14px;
         }
 
-        .button-menu>button:nth-child(2) {
+        .button-menu>.btn:nth-child(2) {
             margin-right: 15px;
         }
 
