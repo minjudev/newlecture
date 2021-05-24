@@ -1,4 +1,5 @@
 <%@page import="com.newlecture.web.entity.Notice"%>
+<%@page import="com.newlecture.web.service.JdbcNoticeService"%>
 <%@page import="com.newlecture.web.service.NoticeService"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,15 +8,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	String id_ = request.getParameter("id"); // 사용자에게 아이디 받기
-	int id = Integer.parseInt(id_); // 무조건 id 값이 오게 해서 id 값 념겨주기
 
-	NoticeService noticeService = new NoticeService();
-	Notice notice = noticeService.get(id); // 특정한 notice 관련 정보(단일 객체로 얻어오기)를 얻어와야하니까 where절에서 부르기 위한 id를 통해 notice 정보 달라고 하기
- 	System.out.println(notice);
- %>    
+	<!-- // 방법론
+	
+	// 코드량이 많아지면 해당 코드블럭이 여러 군데에 흩어져있을 것임
+	// 흩어져있지만 한 번에 봐야할 코드
+	// 모아놓고 보는 게 좋겠다
+	// 모아놓고 보니까 양분화되어보임 -> 해당 코드블럭의 코드는 자바 코드층, 밑은 html 코드층
+	// 산발적으로 흩어져있는 코드 : 스파게티 코드
+	
+	// 자바 코드가 미리 컴파일되지 않음
+	// 미리 컴파일 x -> 수행 성능에 문제
+	// 사용자에게 jsp가 요청되면 그 때야 jasper가 서블릿을 만들고 그 이후에 자바 코드가 컴파일되게 됨
+	// html 수정하는 사람과 자바 코드 수정하는 사람이 같은 문서 공유 -> 효율적 X
 
+	// 모든 코드가 다 Jasper가 필요한가?
+	// 업데이트, 삭제, 폼 제출 시 jasper 필요X
+	// jasper는 get 요청 시에만 필요!
+	// 다시 서블릿으로 가고 jasper는 문서 출력이 필요할 때만 옵션으로 쓰자!
+	// forward: 내가 작업한 것을 너가 이어서 작업해(jasper의 일 축소 가능) -->
+
+<%-- <%
+	Notice notice = (Notice)request.getAttribute("notice"); // 반환 타입이 오브젝트여서 형변환 필요
+%>
+ --%>
+<!-- 	// 여기서 자바 코드가 사라지지 않은 문제점, 완전히 분리되었다고 보기 힘듦
+ -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,33 +136,34 @@
                         <table border="1">
                         	<tr>
                         		<th>제목</th>  <!-- 컬럼 내에서의 제목: th -->
-                        		<td colspan="3"><%=notice.getTitle() %></td> <!-- DB에 해당되는 내용 나오게 하기 -->
-                        	</tr>
+                        		<td colspan="3">${notice.title}<%-- <%=notice.getTitle() %> --%></td> <!-- DB에 해당되는 내용 나오게 하기 -->
+<!--                         		JSP Expression Language 사용, getTitle할 때는 get 지우고 대문자 소문자로 바꾸기
+ -->                        	</tr>
                         	<tr>
                         		<th>작성일</th>
-                        		<td colspan="3"><%=notice.getRegDate() %></td>
+                        		<td colspan="3">${notice.regDate}</td>
                         	</tr>
                         	<tr>
                         		<th>작성자</th>
-                        		<td><%=notice.getWriterId() %></td>
+                        		<td>${notice.writerId}</td>
                         		<th>조회수</th>
-                        		<td><%=notice.getHit() %></td>
+                        		<td>${notice.hit}</td>
                         	</tr>
                         	<tr>
                         		<th>첨부파일</th>
-                        		<td colspan="3"><%=notice.getFiles() %></td>
+                        		<td colspan="3">${notice.files}</td>
                         	</tr>
                         	<tr>
                         		<td colspan="4">
-                        			<%=notice.getContent() %>
+                        			${notice.content}
                         		</td>
                         	</tr>
                         </table>
 						<div>
 							<a href="list.jsp">목록</a>
-							<a href="edit.jsp?id=<%=id%>">수정</a>
+							<a href="edit.jsp?id=${notice.id}">수정</a>
 							<!-- delete할 때 쿼리스트링과 함께 get 방식으로 보냄, 그래서 서블릿에서도 doGet 메소드로 처리 -->
-							<a href="del?id=<%=id%>" onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;">삭제</a> <!-- doGet으로 처리 -->
+							<a href="del?id=${notice.id}" onclick="if(!confirm('정말 삭제하시겠습니까?')) return false;">삭제</a> <!-- doGet으로 처리 -->
                         	<!-- true를 반환하면 기본 행위(a 링크) 동작, return false: e.preventDefault()라고 생각하기-->
                         </div>
                     </section>

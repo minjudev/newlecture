@@ -1,41 +1,10 @@
-<%@page import="com.newlecture.web.entity.Notice"%>
-<%@page import="com.newlecture.web.service.NoticeService"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%-- <%@page import="com.newlecture.web.entity.Member"%>
-<%@page import="com.newlecture.web.service.MemberService"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	String p = request.getParameter("p");
-	String f = request.getParameter("f");
-	String q = request.getParameter("q");
-	
-	System.out.println(p);
-	System.out.println(f);
-	System.out.println(q);
-	
-	// 변수 초기화: 기본 값을 설정하는 것
-	int page_ = 1; // jsp가 가지고 있는 내장 변수가 페이지라는 이름을 사용하고 있어서 오류 발생
-	String field = "title";
-	String query = "";
-	
-	// 사용자가 입력한 값으로 대치
-	if(p != null && !p.equals(""))
-		page_ = Integer.parseInt(p);
-	
-	if(f != null && !f.equals(""))
-		field = f;
-	
-	if(q != null && !q.equals(""))
-		query = q;
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-	// 원래는 import하고 싶은 부분의 패키지명을 전부 적어줘야 함 -> Ctrl + space로 대신
-	NoticeService noticeService = new NoticeService();
-	List<Notice> list = noticeService.getList(page_, field, query); // 사용자가 검색한 결과 얻게 하기
- %>    
-
+<c:set var="lastPage" value="${count / 10 + (count % 10 == 0 ? 0 : 1)}"/> <!-- lastPage라는 키로서 pageContext에 저장이 됨 -->   
+      
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +20,7 @@
     <div id="root">
         <header id="header">
             <div class="float-content">
-                <h1 class="logo"><img src="../images/logo.png" alt="뉴렉처 온라인"></h1>
+                <h1 class="logo"><img src="../images/nlogo.png" alt="뉴렉처 온라인"></h1>
                 <section>
                     <h1 class="d-none">헤더</h1>
                     <nav class="main-menu">
@@ -138,9 +107,9 @@
                             
                             <section class="search-form">
                                 <h1 class="d-none">검색폼</h1>
-                                <form action="list.jsp" method="get"> <!-- action을 생략하면 현재 url과 같은 주소로 요청이 감 -->
+                                <form action="list" method="get"> <!-- action을 생략하면 현재 url과 같은 주소로 요청이 감 -->
                                 	<label class="d-none">검색 분류</label>
-                                	<%
+                            <%--     	<%
                                 		String selectedTitle = "";
                                 		String selectedWriterId = "";
                                 		
@@ -149,14 +118,14 @@
                                 		
                                 		if(field.equals("writer_id"))
                                 			selectedWriterId = "selected";
-                                	%>
+                                	%> --%>
                                 	<select name="f">
                                 		<option value="">분류 선택</option> <!-- value를 비워놓으면 분류 선택칸을 선택 안했음을 알 수 있음 -->
-                                		<option <%=selectedTitle %> value="title">제목</option> <!-- value 지정 시 value 값이 감, value 지정하지 않으면 태그 내의 값인 '제목'이 감 -->
-                             			<option <%=selectedWriterId %> value="writer_id">작성자</option>
+                                		<option ${param.f=='title'?'selected':'' } value="title">제목</option> <!-- value 지정 시 value 값이 감, value 지정하지 않으면 태그 내의 값인 '제목'이 감 -->
+                             			<option ${param.f=='writer_id'?'selected':'' } value="writer_id">작성자</option>
                                 	</select>
                                 	<label class="d-none">검색어</label>
-                                	<input type="text" name="q" value="<%=query%>">
+                                	<input type="text" name="q" value="${param.q}">
                                 	<input type="submit" value="검색">
                                 </form>
                             </section>
@@ -172,39 +141,47 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                	<% for(Notice n : list) {%>
-	                                    <tr>
-	                                        <td class="w-1"><%=n.getId()%></td>
-	                                        <td class="truncate text-align-left"><a href="detail.jsp?id=<%=n.getId()%>"><%=n.getTitle()%></a></td>
-	                                        <td class="w-2"><%=n.getWriterId()%></td>
-	                                        <td class="w-2"><%=n.getRegDate()%></td>
-	                                        <td class="w-1"><%=n.getHit()%></td>
-	                                    </tr> 
-                                    <% }%>
+                                
+                                <!-- 제어가 필요한 코드는 어떻게 할까? -->
+                                <!-- forEach 태그 앞에 접두사를 써서 단순한 출력 태그가 아닌 for문을 위한 태그로 jasper가 인식하게 하기-->	
+                               	
+                               	<c:forEach var="n" items="${list}"> <!-- //컬렉션이 가지는 개수만큼 반복, n이라는 키값으로 담아줌 -->
+                                    <tr>
+                                        <td class="w-1">${n.id}</td>
+                                        <td class="truncate text-align-left"><a href="detail.jsp?id=${n.id}">${n.title}</a></td>
+                                        <td class="w-2">${n.writerId}</td>
+                                        <td class="w-2"><fmt:formatDate value="${n.regDate}" pattern="yy.MM.dd"/></td>
+                                        <td class="w-1">${n.hit}</td>
+                                    </tr> 
+                               	
+                               	</c:forEach>
+                               	
                                 </tbody>
                             </table>
+                            
+                            <div>
+                            	<a href="reg.jsp">글쓰기</a>
+                            </div>
+                            
                         </section>
 
                         <section class="page-status mt-3">
-                            <h1 class="d-none">현재 페이지 정보</h1>
-                            <% 
-                            	int count = noticeService.getCount(field, query);
-                            	int lastPage = count / 10 +  (count % 10 == 0 ? 0 : 1); // 
-                            %>
+                            <h1 class="d-none">현재 페이지 정보</h1>                            
                             <div>
-                                <span class="text-strong"><%=page_ %></span> / <%=lastPage %> pages 
-                            </div>
+                                <span class="text-strong">${(empty param.p)?1:param.p}</span> / ${lastPage} pages
+<!--                                 						empty: null & 빈 문자열 
+ -->                            </div>
                         </section>
                         <nav class="pager mt-3">
                             <h1 class="d-none">페이저</h1>
                             <div class="button">이전</div>
                             <ul>
-                            <%for(int i=0; i<5; i++) {%> <!-- 1. 횟수를 수정 -->
+                            <%-- <%for(int i=0; i<5; i++) {%> <!-- 1. 횟수를 수정 -->
                             	<!-- 2. lastPage보다 출력되는 게 클 경우 안 나오게 if문 조건처리 -->
                             	<%if(lastPage >= i+1)  {%> 
                                 	<li><a class="<%=page_ == i+1 ? "text-strong" : "" %>" href="list.jsp?p=<%=i+1 %>&f=<%=field %>&q=<%=query %>"><%=i+1 %></a></li> <!--이렇게 해서 사용자가 검색한 결과 내에서 paging 할 수 있게 하기-->
                             	<%} %>
-                            <%} %> 
+                            <%} %>  --%>
                                 
 <!--                            <li><a href="list.jsp?p=5">5</a></li> 이렇게 하면 사용자가 검색한 결과에 페이징이 결합되지 못함  --> 
 	                        </ul>
