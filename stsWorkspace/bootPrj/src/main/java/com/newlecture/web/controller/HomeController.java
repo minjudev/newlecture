@@ -10,6 +10,8 @@ public class HomeController {
 	@RequestMapping("/index")
 	public String index() {
 		return "index"; // RestController에서 rest를 지우면 포워딩을, rest를 쓰면 바로 출력하는 것을 의미
+						// 데이터를 객체로 표현하는 방식에 대한 이야기: rest
+					
 	}
 	
 	// 기능을 담당하는 것을 class로 만들고 그 앞의 경로는 package로 만들기!
