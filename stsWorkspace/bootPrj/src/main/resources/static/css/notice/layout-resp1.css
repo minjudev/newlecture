@@ -1,0 +1,105 @@
+html, body {
+    height: 100%;
+    /* root의 부모들의 높이를 100%로 높이기 */
+    margin: 0;
+}
+
+#root {
+    /* height: 100%; */
+    /* vh를 사용해 화면에 맞춰서 높이를 주게 되면, 화면에 맞게 크기가 달라지니까 나중에 부모와의 크기가 안 맞게 될 가능성이 있음 */
+    /* display: grid;
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 60px; */
+    /* grid-template-areas:
+    "header"
+    "aside"
+    "main"
+    "sidebar"
+    "advertising"
+    "footer"; */ 
+}
+
+.box1 {
+    background-color: red;
+    height: 60px;
+   
+}
+
+.box2 {
+    background-color: gold;
+
+}
+
+.box3 {
+    background-color: blue;
+}
+
+.box4 {
+    background-color: green;
+}
+
+.box5 {
+    background-color: lightcoral;
+}
+
+.box6 {
+    background-color: lightgreen;
+}
+
+/* break point */
+/* screen의 너비가 500px이 넘어가면 아래 속성을 적용 */
+@media screen and (min-width: 500px) {
+    #root {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+        grid-template-areas: 
+        "header header"
+        "aside aside"
+        "sidebar main"
+        "advertising footer";
+    }
+
+    .box1 {
+        background-color: red;
+        grid-area: header;
+    }
+
+    .box2 {
+        background-color: gold;
+        grid-area: aside;
+    }
+
+    .box3 {
+        background-color: blue;
+        grid-area: main;
+    }
+
+    .box4 {
+        background-color: violet;
+        grid-area: sidebar;
+    }
+
+    .box5 {
+        background-color: green;
+        grid-area: advertising;
+    }
+
+    .box6 {
+        background-color: coral;
+        grid-area: footer;
+    }
+  }
+
+/* screen의 너비가 500이하일 경우 아래 속성을 적용 */
+/* @media screen and (max-width: 500px) {
+    .container {
+      margin: 1em 2em;
+    }
+  } */
+
+/* screen의 너비가 500px 에서 800px 사이일 경우 아래 속성을 적용 */
+/* @media screen and (min-width: 500px) and (max-width: 800px) {
+    .container {
+      margin: 1em 2em;
+    }
+  } */

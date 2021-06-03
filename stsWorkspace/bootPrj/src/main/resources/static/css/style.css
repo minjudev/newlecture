@@ -1,0 +1,540 @@
+html, body {
+    height: 100%;
+}
+
+html, body, h1, ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+/* a �깭洹� 由ъ뀑 */
+a {
+    color: initial;
+    text-decoration: initial;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+/* ----------------------- common(base) style -------------------------- */
+
+/* html �쟾泥� 踰붿쐞�뿉 �빐�떦�릺�뒗 root */
+/* html �깭洹몃낫�떎 �뜑 �꼻寃� 媛먯떥�뒗 �깭洹�: :root */
+:root {
+    --color-basic: #979797;
+    --color-strong: #ff6a00;
+    --bg-color-basic: #fff;
+    --bg-color-light: #e9e9e9;
+    --bg-color-dark: #313131;
+}
+
+body {
+    font-family: "�룍�쓬", Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    color: var(--color-basic);
+}
+
+a {
+    color: var(--color-basic);
+}
+
+/* ----------------------- utils style -------------------------- */
+
+.d-none {
+    display: none !important;
+}
+
+.truncate {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important; /* �닲寃⑥쭊 遺�遺꾩� �깮�왂 �몴�떆 */
+}
+
+.text-strong {
+    color: var(--color-strong);
+    font-weight: bold;
+}
+
+.text-align-left {
+    text-align: left !important;
+}
+
+.mt-2 {
+    margin-top: 5px !important;
+}
+
+.mt-3 {
+    margin-top: 10px !important;
+}
+
+.mt-4 {
+    margin-top: 15px !important;
+}
+
+/* ----------------------- content block style -------------------------- */
+
+.table { /* table�� �썝�옒 width瑜� 100% 媛�吏�吏� �븡怨� 肄섑뀗痢좉� �뀒�씠釉붿쓽 �꼫鍮꾨�� 寃곗젙 */
+    border-top: 2px solid #8cba35;
+    width: 100%;
+    /* ���쓽 寃쎄퀎�꽑 蹂묓빀 */ 
+    border-collapse: collapse; 
+    /* 肄섑뀗痢좎쓽 �겕湲곌� 而ㅼ죱�쓣 �븣 �떎瑜� �뀒�씠釉붿쓽 怨듦컙�쓣 諛��뼱�궡吏� �븡寃� �븯湲� */
+    table-layout: fixed;
+    text-align: center;
+}
+
+    .table tr {
+        height: 30px;
+        line-height: 30px; /* tr�� 寃쎄퀎�꽑�쓣 媛뽰� �븡�쓬 */
+    }
+
+    .table thead tr {
+        background-color: #f5f5f5;
+    }
+
+    .table thead td {
+        background: url(../images/bg-title-sp.png) no-repeat left center;
+    }
+
+    .table thead td:first-child {
+        background: none;
+    }
+
+    .table td {
+        border-bottom: 1px solid #e9e9e9; /* �몴�쓽 �븯�떒 寃쎄퀎�꽑�쓣 二쇰젮硫� td�뿉 �꽕�젙�빐�빞 �븿 */
+        /* border: 1px solid blue; */
+        padding: 0;
+    }
+
+    .table td.w-1 {
+        width: 60px;
+    }
+
+    .table td.w-2 {
+        width: 100px;
+    }
+
+/* ----------------------- component style -------------------------- */
+
+.button,
+.icon,
+.img {
+    display: inline-block;
+    text-indent: -999px; /* �븘�삁 �쇊履쎌쑝濡� �뱾�뿬�벐湲� �빐�꽌 �씠誘몄��쓽 �꼫鍮꾧� �삤瑜몄そ�쑝濡� 而ㅼ��뜑�씪�룄 湲��옄媛� 蹂댁씠吏� �븡寃� 留뚮뱾湲� */
+    overflow: hidden; /* �쇊履� �삉�뒗 �삤瑜몄そ�쑝濡� overflow�맂 �슂�냼媛� �엳�쑝硫� 蹂댁씠吏� �븡寃� �븯湲� */
+}
+
+.img-notepubs {
+    background: url(../images/notepubs.png) no-repeat;
+    width: 180px;
+    height: 50px;
+}
+
+.img-namoolab {
+    background: url(../images/namoolab.png) no-repeat;
+    width: 180px;
+    height: 50px;
+}
+
+/* ----------------------- layout style -------------------------- */
+
+.float-content {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    min-height: inherit;
+    /* height: inherit; */
+}
+
+#root {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 205px 755px 1fr;
+    grid-template-rows: 70px 171px 1fr 100px;
+    grid-template-areas: 
+    "header header header header"
+    "visual visual visual visual"
+    "body body body body"
+    "footer footer footer footer";
+}
+
+#header {
+    background-color: var(--bg-color-basic);
+    grid-area: header;
+}
+
+#visual {
+    border-top: 3px solid #8CBA34;
+    background: var(--bg-color-dark) url("../images/bg-visual.png") no-repeat center;
+    grid-area: visual;
+}
+
+    #visual>.float-content {
+        background: url("../images/customer/visual.png") no-repeat center;
+    }
+
+#body {
+    border-top: 5px solid #8CBA34;
+    margin-top: 1px;
+    grid-area: body;
+}
+
+    #body>.float-content {
+        display: grid; /* �빐�떦 �꽕�젙留� �뻽�쓣 �븣�뒗 �옄�룞�쟻�쑝濡� body媛� �꽕 媛쒖쓽 �쁺�뿭�쑝濡� �굹�닠吏� */
+        grid-template-columns: 1fr 205px 755px 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: ". aside main .";
+
+        background: url("../images/bg-body.png") repeat-y;
+    }
+
+#aside {
+    grid-area: aside;
+    background: url("../images/bg-aside-title.png") no-repeat;
+}
+
+#main {
+    position: relative;
+    grid-area: main;
+    padding: 45px 0px 50px 35px;
+}
+
+    .breadcrumb {
+        position: absolute;
+        top: 58px;
+        right: 0px;
+        font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 10px;
+        font-weight: bold;
+        color: #979797;
+        display: inline-block;
+    }
+
+        .breadcrumb>ol {
+            display: flex;
+            padding-left: 0;
+        }
+
+            .breadcrumb>ol>li {
+                padding-left: 10px;
+                background: url(../images/icon-path.png) no-repeat 0px center;
+            }
+
+            .breadcrumb>ol>li:first-child {
+                padding-left: 20px;
+                background: url(../images/icon-home.png) no-repeat 0px center;
+            }
+
+            
+    .main-title {
+        font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        color: #646464;
+        font-weight: bold;
+        font-size: 21px;
+        padding-left: 25px;
+        background: url(../images/icon-main-title.png) no-repeat 0px center;
+    }
+
+    .search-form {
+        display: flex;
+        right: 0px;
+        margin-top: 26px;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    
+        .search-form>:nth-child(2) {
+            display: flex;
+            height: 18px;
+            margin-right: 5px;
+        }
+        
+        .search-form>form>:nth-child(5) {
+        	border: 1px solid black;
+        	padding: 0 3px;
+        	line-height: 18px;
+        	cursor: pointer;
+	    }
+        
+    
+/* .page-status {
+    text-align: right;
+}
+
+.page-status>div {
+    display: inline-block;    
+} */
+
+/* .page-status {
+    display: flex;
+    justify-content: flex-end;
+} */
+
+
+.page-status>div {
+    text-align: right;    
+}
+
+.pager {
+    display: flex;
+    justify-content: center;
+}
+
+.pager>:nth-child(2) {
+    height: 15px;
+    width: 15px;
+    background: url(../images/btnPrev.png) no-repeat center;
+}
+
+.pager>:nth-child(4) {
+    height: 15px;
+    width: 15px;
+    background: url(../images/btnNext.png) no-repeat center;
+}
+
+.pager>ul {
+    display: flex;
+    height: 15px;
+    margin: 0 4px;
+}
+
+    .pager li {
+        width: 15px; /*遺�紐⑥쓽 遺�紐⑥뿉 flex媛� �꽕�젙�릺�뼱�엳�쑝硫� flex-basis濡� �뻽�쓣 �븣 �꼫鍮꾧� �젣��濡� �굹�삤吏� �븡�쓬*/
+        text-align: center;
+        line-height: 15px;
+        /* border: 1px solid #000; */
+    }
+
+#footer {
+    background-color: #313131;
+    grid-area: footer;
+}
+
+@media screen and (max-width: 960px) {
+    .float-content {
+        width: 100%;
+    }
+
+    #root {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "header"
+        "visual"
+        "body"
+        "footer";
+    }
+    
+    #body {
+        grid-template-columns: 1fr;
+        grid-template-areas: "main";
+    }
+}
+ 
+/* ------------------------------------------------------------------- */
+
+#header>.float-content {
+    position: relative;
+    /* �븘�옒 �옄�떇�뱾�씠 float-content瑜� 湲곗��쑝濡� �븯湲� �쐞�빐 �뿬湲곗뿉 relative 二쇨린 */
+}
+
+.logo { /* logo�뒗 section怨쇰뒗 �떎瑜� 諛⑹뿉 �엳�뼱�꽌 �뿤�뜑�쓽 硫붾돱�뱾怨� �떎瑜� 痢듭쓣 �벐寃� �맖  */
+    margin: 0;
+    display: inline-block;
+    position: absolute; /* 湲곕낯媛�: static - �씠 �븣�뒗 left, top�씠 �쓽誘� �뾾�쓬 */
+                        /* absolute(臾몄꽌 醫뚯긽�떒 湲곗�) / relative(�옄�떊 湲곗�) / fixed(�솕硫� 醫뚯긽�떒 湲곗�) / sticky(遺�紐� �깭洹� 湲곗�) */
+                        /* 遺�紐⑤굹 議곗긽�뿉 relative媛� �뾾�쑝硫� 臾몄꽌 醫뚯긽�떒 湲곗� */
+    left: 0px;
+    top: 23px;
+}
+
+.main-menu {
+    display: inline-block;
+    
+    font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #000000;
+    font-weight: bold;
+    font-size: 15px;
+   
+    position: absolute; /* relative瑜� 二쇨쾶 �릺硫� static �쐞移섏뿉�꽌 left, top �쟻�슜 */
+    left: 200px;
+    top: 27px;
+}
+
+    .main-menu>ul {
+        display: flex;
+    }
+
+        .main-menu>ul>li {
+            padding-left: 24px;
+            background: url(../images/bg-main-menu-vsp.png) no-repeat 12px center;
+        }
+
+        .main-menu>ul>li:first-child {
+            padding-left: 0;
+            background: none;
+        }
+
+        .main-menu>ul>li>a:hover {
+            color: gold;
+        }
+
+.lecture-search-form {
+    display: inline-block;
+   
+    width: 308px;
+    height: 25px;
+    border: 5px solid #8CBA34;
+   
+    position: absolute;
+    left: 468px;
+    top: 21px;
+}
+
+    .lecture-search-form fieldset {
+        display: flex;
+        border: 0px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .lecture-search-form fieldset label { /* label: �씤�씪�씤 �깭洹�(洹몃윴�뜲 �꼫鍮�, �넂�씠媛� �솢 �쟻�슜�릱�쓣源�?) */
+                                          /* flex-item�쑝濡쒖꽌 議댁옱�븯湲� �븣臾몄뿉 �꼫鍮�, �넂�씠瑜� 媛�吏� �닔 �엳�쓬 */
+        font-size: 11px;
+        font-weight: bold;
+        flex-basis: 55px; /* width: 55px; */ /* flex-item�� �꼫鍮꾨�� flex-basis濡� 二쇰뒗 寃껋씠 醫뗫떎 */
+        /* align-items: stretch; */ /* stretch媛� 湲곕낯, 遺�紐⑥쓽 �넂�씠媛� 洹몃�濡� 諛섏쁺�맖 */
+        text-align: center;
+        line-height: 25px;
+    }
+
+    .lecture-search-form fieldset input[type=text]/*:nth-child(3)*/ {
+        flex-grow: 1;
+        border: 0;
+        /* text-indent: 5px; */
+        padding-left: 5px;
+        font-size: 11px;
+        font-weight: bold;
+    }
+
+    .lecture-search-form fieldset input[type=submit] {
+        flex-basis: 31px;
+        background: url(../images/btn-zoom.png) no-repeat center;
+        border: 0px;
+        border-left: 1px solid #8CBA34;
+    }
+
+.member-menu {
+    font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    color: #979797;
+    display: inline-block;
+    position: absolute;
+    /* left: 468px; */ /* html 而⑦뀗痢좉� 諛붾�� �닔 �엳�쑝誘�濡� left 媛� �궗�슜 鍮꾧텒�옣 */
+    right: 0px; /* �삤瑜몄そ �젙�젹 �븘�슂 */
+    top: 20px;
+}
+
+    .member-menu>ul {
+        display: flex;
+    }
+
+        .member-menu>ul>li {
+            padding-left: 9px;
+            background: url(../images/bg-member-menu-sp.png) no-repeat 4.5px center;
+        }
+
+        .member-menu>ul>li:first-child {
+            padding-left: 0;
+            background: none;
+        }    
+
+.customer-menu {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 40px;
+}
+
+    .customer-menu>ul {
+            display: flex;
+        }
+        
+        .customer-menu .mypage-button {
+            background: url("../images/txt-mypage.png") no-repeat center; /* x, y 醫뚰몴 紐⑤몢 center; */
+            width: 72px; 
+            height: 17px; 
+        }
+        
+        .customer-menu .customer-button {     
+            background: url("../images/txt-customer.png") no-repeat center;
+            width: 72px; 
+            height: 17px;
+        }
+
+/* ------------------------------------------------------------------- */
+
+#aside>h1 {
+    font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+
+    margin-top: 43px;
+}
+
+.aside-menu {
+    margin-top: 30px;
+}
+
+.aside-menu>h1 {
+    font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 13px;   
+    padding-left: 26px;
+    background: url(../images/icon-recommend.png) no-repeat 0px center;
+}
+
+.aside-menu>ul {
+    margin-top: 10px;
+}
+
+/* ------------------------------------------------------------------- */
+
+.main-aside-menu {
+    margin-top: 45px;
+}
+
+.main-aside-menu > h1 {
+    color:#ffffff;
+    height: 27px;
+    line-height: 27px;
+    padding-left: 10px;
+    font-size:12px;
+    font-weight: bold;
+    text-shadow: 0.5px 0.5px 1px#000000;
+    background:url(../images/bg-aside-sub-title.png) no-repeat 0px 0px;
+}
+
+.main-aside-menu li {
+        height: 26px;
+        line-height: 26px;
+        background: url(../images/bg-aside-menu-hsp.png) no-repeat center bottom;
+    }
+
+    .main-aside-menu a {
+        font-family: "留묒� 怨좊뵓", "怨좊뵓", 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 11px;
+        color: #808080;
+        padding-left: 26px;
+    }
+    
+    .main-aside-menu a:hover,
+    .main-aside-menu a.current {
+        background: url(../images/icon-current.png) no-repeat 13px center;
+    }
+    
+    

@@ -1,0 +1,74 @@
+#root {
+    display: grid;
+    grid-template-columns: repeat(12, [col-start] 1fr); /* [col-start]: 라인번호 이름 지정 */
+    gap: 20px;
+}
+
+#root > * {
+    background-color: red;
+    grid-column: 1 / span 12;
+}
+
+.navbar {
+    list-style: none;
+}
+
+@media screen and (min-width: 500px) {
+    .navbar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    #root > .side,
+    #root > .ad {
+        grid-column: 1 / span 3;
+    }
+
+    #root > .content,
+    #root > .main-footer {
+        grid-column: col-start 4 / span 9;
+        /* "col-start 4"는 네번째 라인을 뜻함 */
+    }
+
+    #root > .side,
+    #root > .content {
+        grid-row: 3; /* 라인 번호 3번에서 한 칸만 적용 */
+    }
+
+    #root > .ad,
+    #root > .main-footer {
+        grid-row: 4; 
+    }
+} 
+
+@media screen and (min-width: 800px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #root > .main-nav {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 2;
+    }
+    
+    #root > .content {
+        grid-column: 3 / span 8;
+        grid-row: 2 / span 2;
+    }
+
+    #root > .side {
+        grid-column: 11 / span 2;
+        grid-row: 2;
+    }
+
+    #root > .ad {
+        grid-column: 11 / span 2;
+        grid-row: 3;
+    }
+    
+    #root > .main-footer {
+        grid-column : 1 / span 12;
+    }
+}
