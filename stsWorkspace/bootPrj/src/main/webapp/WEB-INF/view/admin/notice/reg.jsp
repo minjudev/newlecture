@@ -1,6 +1,6 @@
 <%@page import="com.newlecture.web.entity.Notice"%>
-<%@page import="com.newlecture.web.service.NoticeService"%>
-<%@page import="java.util.List"%>
+<%-- <%@page import="com.newlecture.web.service.NoticeService"%>
+ --%><%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%-- <%@page import="com.newlecture.web.entity.Member"%>
 <%@page import="com.newlecture.web.service.MemberService"%> --%>

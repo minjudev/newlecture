@@ -38,6 +38,7 @@
                    	<c:if test="${!empty sessionScope.uid }">
 	                    <li><a href="/member/logout">로그아웃</a></li> <!-- 세션에 uid가 존재할 때 나오게 하기 -->
                     </c:if>
+                    <li>data: ${data }</li>
                     <li><a href="">회원가입</a></li>
                 </ul>
             </nav>

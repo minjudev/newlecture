@@ -3,10 +3,50 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="admin.notice.list" template="/WEB-INF/view/admin/inc/layout.jsp"> <!-- name은 url 본떠서 작성하기 -->
+
+  <!-- 순서가 중요, 특화된 것을 제일 위에 써주기 -->
+  <!-- 
+  <definition name="common" template="/WEB-INF/view/inc/layout.jsp">    
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+
+  <definition name="admin.*" extends="common">    
+    
+    <put-attribute name="aside" value="/WEB-INF/view/admin/inc/aside.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/{1}/{2}.jsp" />
+    
+  </definition>
+   -->
+  
+  <definition name="*.*.*" template="/WEB-INF/view/{1}/inc/layout.jsp" 
+  			preparer="com.newlecture.web.config.SubLayoutPreparer"> <!-- 미리 데이터를 채워놓은 것을 컨트롤러에서 쓰게 하기, layout이 같아야 집중화가 가능 -->															
+    <!-- <put-attribute name="title" value="타이틀" /> --> <!-- 페이지에 따라 이 값이 바뀌길 원함, layout에서 바뀌어야할 값은 여기서 설정해야 함 -->
+    <put-attribute name="js" value="{3}.js" />
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/{1}/inc/aside.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/{1}/{2}/{3}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  
+  <definition name="admin.*" template="/WEB-INF/view/admin/inc/layout.jsp" > <!-- name은 url 본떠서 작성하기 -->
     <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
     <put-attribute name="aside" value="/WEB-INF/view/admin/inc/aside.jsp" />
-    <put-attribute name="main" value="/WEB-INF/view/admin/notice/list.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/admin/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  
+  <definition name="member.*" template="/WEB-INF/view/member/inc/layout.jsp">    
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/member/inc/aside.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/admin/{1}.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
+  </definition>
+  
+  <definition name="*.*" template="/WEB-INF/view//inc/layout.jsp"> 
+    <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
+    <put-attribute name="aside" value="/WEB-INF/view/inc/aside.jsp" />
+    <put-attribute name="main" value="/WEB-INF/view/{1}/{2}/{3}.jsp" />
     <put-attribute name="footer" value="/WEB-INF/view/inc/footer.jsp" />
   </definition>
 </tiles-definitions>

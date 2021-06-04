@@ -20,11 +20,11 @@ public class HomeController {
 	
 	@GetMapping("index")
 	public String index() {
-		return "admin index page";
+		return "admin.index";
 	}
 
 	@PostMapping("upload") // 비동기적으로 파일 업로드하기
-	public String upload(MultipartFile[] files, /*file이라는 같은 변수명으로 받으려면 name 속성도 같은 이름("file")이어야함, name 속성 이름이 다르다면 RequestParam을 써줘야함*/
+	public String upload(/*@RequestParam(name="file1")*/ MultipartFile[] files, /*file이라는 같은 변수명으로 받으려면 name 속성도 같은 이름("file")이어야함, name 속성 이름이 다르다면 RequestParam을 써줘야함*/
 			HttpServletRequest request) {
 		
 		for(MultipartFile file : files) {
