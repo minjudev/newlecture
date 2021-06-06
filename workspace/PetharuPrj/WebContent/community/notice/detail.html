@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>detail</title>
+    <link href="./detail.css" type="text/css" rel="stylesheet">
+    <script src="./detail.js"></script>
+</head>
+<body>
+    <div id="root">
+        <header id="header">
+            <div class="float-content">
+                <div class="flex align-center">
+                    <a href="" class="logo-title-container">
+                        <img src="../../images/logo.png" alt="펫하루">
+                    </a>
+                    <nav class="main-menu">   
+                        <h1 class="d-none">메인메뉴</h1>
+                        <ul>
+                            <li><a href="../../myhome/list.html">우리집</a></li>
+                            <li><a href="../../friends/list">이웃집</a></li>
+                            <li><a href="../../pet-management/mypet/list">내동물관리</a></li>
+                            <li><a href="./list.html">커뮤니티</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <nav class="member-menu">
+                    <h1 class="d-none">회원메뉴</h1>
+                    <ul>
+                        <li><a href="../../member/profile-edit.html">MyPage</a></li>
+                        <li><a href="../../login">LogOut</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div id="body">
+            <div class="float-content">
+                <aside id="aside">
+                    <nav class="aside-menu">
+                        <h1 class="d-none">커뮤니티</h1>
+                        <ul>
+                            <li><a class="current-page" href="./list.html">공지사항</a></li>                     
+                            <li><a href="../knowhow/list">노하우</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <main id="main">
+                    <h1></h1> <!-- 펫하루 오픈 -->
+                    <section class="notice-info">
+                        <h1 class="d-none">작성 정보</h1>
+                        <ul>
+                            <li class="id">글번호 : </li>
+                            <li class="user-id">작성자 : </li>
+                            <li class="reg-date">작성일 : </li>
+                            <li class="hit">조회수 : </li>
+                        </ul>
+                    </section>
+                    <article class="notice-article">
+                        <h1 class="d-none">공지사항 본문</h1>
+                        <div>
+	                        <!-- 하루하루 달라지는 우리의 반려동물을 기록하고 저장하기 위해 펫하루가 오픈했습니다.<br>
+	                        많이 찾아와주세요.<br>
+	                        감사합니다! -->
+	                    </div>
+	                    <a download class="thumbnail"><img></a>
+                    </article>
+                    <nav class="article-pager">
+                        <h1 class="d-none">상세 페이저</h1>
+                        <div class="up-article-pager"></div>
+                        <div class="down-article-pager"></div>
+                    </nav>
+                    <nav class="article-button">
+                        <h1 class="d-none">공지사항 버튼</h1>
+                        <button class="create-btn button-2"><a href="./create.html">등록</a></button>
+                        <button class="update-btn button-2"><a href="./update.html">수정</a></button>
+                        <button class="delete-btn button-2">삭제</button>
+                        <button class="list-btn button-2"><a href="./list.html">목록</a></button>
+                    </nav>
+                </main>
+            </div>
+        </div>
+
+        <footer id="footer">
+            <div class="float-content">
+                copyright ©
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
