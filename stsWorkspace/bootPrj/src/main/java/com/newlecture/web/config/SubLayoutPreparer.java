@@ -20,6 +20,6 @@ public class SubLayoutPreparer implements ViewPreparer { // 뷰가 만들어지�
 		Object title = model.get("title");
 		if(title == null)
 			// request 덮어쓰기 가능
-			model.put("title", "뉴렉처 온라인2"); // -> tiles.xml로 이동(값을 넘겨주는 순서)
+			model.put("title", "뉴렉처 온라인2"); 
 	}
 }

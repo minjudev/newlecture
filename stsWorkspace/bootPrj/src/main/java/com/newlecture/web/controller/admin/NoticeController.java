@@ -7,6 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -22,15 +23,22 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.newlecture.web.entity.Notice;
+import com.newlecture.web.service.NoticeService;
 
 @Controller("adminNoticeController")
 @RequestMapping("/admin/notice/") // url이 기니까 줄이자!
 public class NoticeController {
+	
+	@Autowired
+	private NoticeService service; // 컨테이너에서 뽑아서 service에 넣어줌(service를 컨테이너에 넣기 위해 @service annotation 설정)
 
 	@RequestMapping("list") 
 	// @ResponseBody // 컨트롤러 안에서 문서가 아닌 데이터를 바로 출력하게 함
 	public String list(Model model) { // 모델을 얻는 작업
 		
+		List<Notice> list = service.getList();
+		
+		/*
 		List<Notice> list = new ArrayList<>();
 		Notice notice = null;
 		
@@ -45,6 +53,7 @@ public class NoticeController {
 		notice.setTitle("안녕하세요");
 		notice.setWriterId("minju");
 		list.add(notice);
+		*/
 		
 		/*
 		ModelAndView mv = new ModelAndView();
@@ -53,7 +62,7 @@ public class NoticeController {
 		*/
 		
 		model.addAttribute("list", list); // 그 모델에 값을 담는 작업, 반환은 필요 없음
-		// model.addAttribute("title", "test");
+		// model.addAttribute("title", "test1");
 		
 		return "admin.notice.list"; // 뷰 정보를 반환
 		

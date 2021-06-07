@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../css/style.css" type="text/css" rel="stylesheet">
     
-    <c:set var="title" value="${title }"></c:set> <!-- SubLayoutPreparer에서 심어준 title -->
+    <c:set var="title" value="${title }"></c:set>  <!-- SubLayoutPreparer에서 심어준 title -->
     <title>${title}</title> 
     
     <!-- tiles.xml에서 고정으로 설정한 값 출력(tiles:getAsString name="") -->
