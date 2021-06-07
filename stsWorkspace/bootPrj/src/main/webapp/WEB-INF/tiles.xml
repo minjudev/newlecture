@@ -21,7 +21,7 @@
   
   <definition name="*.*.*" template="/WEB-INF/view/{1}/inc/layout.jsp" 
   			preparer="com.newlecture.web.config.SubLayoutPreparer"> <!-- 미리 데이터를 채워놓은 것을 컨트롤러에서 쓰게 하기, layout이 같아야 집중화가 가능 -->															
-    <!-- <put-attribute name="title" value="타이틀" /> --> <!-- 페이지에 따라 이 값이 바뀌길 원함, layout에서 바뀌어야할 값은 여기서 설정해야 함 -->
+    <!-- <put-attribute name="title" value="타이틀" expression="${title}"/> --> <!-- 페이지에 따라 이 값이 바뀌길 원함, layout에서 바뀌어야할 값은 여기서 설정해야 함 -->
     <put-attribute name="js" value="{3}.js" />
     <put-attribute name="header" value="/WEB-INF/view/inc/header.jsp" />
     <put-attribute name="aside" value="/WEB-INF/view/{1}/inc/aside.jsp" />
