@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- mapping을 하게 될 인터페이스의 메소드를 id에 넣기, 인터페이스 구현은 여기서 함 -->
+<mapper namespace="com.newlecture.web.dao.NoticeDao">
+
+	<select id="get" resultType="com.newlecture.web.entity.Notice" > <!-- resultType: 쿼리 후 결과를 위한 데이터 -->
+    	select * from Notice where id = #{id}
+    </select>
+
+    <select id="getList" resultType="com.newlecture.web.entity.Notice"> <!-- 반환할 때 사용되는 그릇의 형식 적기 -->
+    	select * from Notice where ${field} like '%${query}%'
+    	order by regdate desc
+    </select>
+    
+    <select id="getViewList" resultType="com.newlecture.web.entity.NoticeView"> <!-- 반환할 때 사용되는 그릇의 형식 적기 -->
+    	select * from NoticeView where ${param2} like '%${param3}%'
+    	order by regdate desc
+    </select>
+    
+    <select id="getCount" resultType="int"> <!-- resultType 기본형이면 안써줘도 됨, resultType: 쿼리 후 결과를 위한 데이터, select에는 parameterType을 넣어주지 않고 param1, param2 이렇게 작성해야 함 --> 
+    	select count(id) from Notice
+		where ${param2} like '%${param3}%'
+    </select>
+    
+    <insert id="insert" parameterType="com.newlecture.web.entity.Notice"> <!-- 입력될 데이터, int insert(Notice notice) 참고 -->
+    	insert into Notice(title, content, writerId)
+    	values(#{title}, #{content}, #{writerId}) <!-- notice가 가지고 있는 getTitle, getContent 참고 -->
+    </insert>
+    
+    <update id="update" parameterType="com.newlecture.web.entity.Notice">
+    	update Notice
+    	set
+    	title = #{title},
+    	writerId = #{writerId},
+    	content = #{content},
+    	hit = #{hit: 0},
+    	files = #{files},
+    	pub = #{pub},
+    	where id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+    	delete from Notice where id = #{id}
+    </delete>
+
+</mapper>
+<!-- mapper container에게 이 설정의 위치를 application.properties에서 알려줘야 함 -->

@@ -36,7 +36,7 @@ public class NoticeController {
 	// @ResponseBody // 컨트롤러 안에서 문서가 아닌 데이터를 바로 출력하게 함
 	public String list(Model model) { // 모델을 얻는 작업
 		
-		List<Notice> list = service.getList();
+		List<Notice> list = service.getList(1, "title", "");
 		
 		/*
 		List<Notice> list = new ArrayList<>();
@@ -74,21 +74,27 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("detail") 
-	public String detail(Model model) {
+	public String detail(int id, Model model) { // null값이 올 수 있다면 int를 Integer로 받아주기
 		
+		Notice notice = service.get(id);
+		
+		/*
 		Notice notice = new Notice();
 		notice.setId(1);
 		notice.setTitle("클릭해주세요");
 		notice.setWriterId("newlec");
 		
-		model.addAttribute("notice", notice); // 모델을 xml에서 가져다쓸 수 있음
+		model.addAttribute("notice", notice); // 모델을 tiles.xml에서 가져다쓸 수 있음
 		model.addAttribute("title", notice.getTitle()); // 이렇게 해줘도 preparer이 덮어씌워짐
+		*/
 		
 		/*
 		ModelAndView mv = new ModelAndView();
 		// mv.setViewName("/WEB-INF/view/admin/notice/detail.jsp"); // 스프링(프론트 컨트롤러)에게 데이터 전달
 		mv.setViewName("admin.notice.detail");
 		*/
+		
+		model.addAttribute("notice", notice);
 		
 		return "admin.notice.detail";
 	}
@@ -139,9 +145,20 @@ public class NoticeController {
 		// return String.format("x: %d, y: %d, result: %d, field: %s, test cookie: %s", x, y, x+y, field, test);
 	}
 	
-	 //@PostMapping("reg") 
-	 public String reg(String test) { // get, post 요청 둘 다 필요
-		 return "admin notice reg"; 
+	 @PostMapping("reg") 
+	 public String reg(
+			 String title, 
+			 String content) {
+		 
+		 Notice notice = new Notice();
+		 notice.setTitle(title);
+		 notice.setContent(content);
+		 notice.setWriterId("newlec");
+		 
+		 service.insert(notice);
+		 
+		 return "redirect:list"; // list로만 넘어가면 돼서 리디렉션 쓰기 
+		 						 // 포워딩이 아닌 리디렉션(뷰 페이지가 아닌 list 컨트롤러로 이동)
 	 }
 	 
 	
@@ -151,7 +168,10 @@ public class NoticeController {
 	}
 	
 	@RequestMapping("del") 
-	public String del() {
-		return "admin notice del";
+	public String del(int id) {
+		
+		service.delete(id);
+		
+		return "redirect:list";
 	}
 }

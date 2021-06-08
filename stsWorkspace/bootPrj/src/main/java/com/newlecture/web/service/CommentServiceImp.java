@@ -10,7 +10,7 @@ import com.newlecture.web.entity.Notice;
 import com.newlecture.web.entity.NoticeView;
 
 @Service
-public class NoticeServiceImp implements NoticeService {
+public class CommentServiceImp implements NoticeService {
 	// 구현체 얻기, 업무 로직 짜는 곳
 
 	/*

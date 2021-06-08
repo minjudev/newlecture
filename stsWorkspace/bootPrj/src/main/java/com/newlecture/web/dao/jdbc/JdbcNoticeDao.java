@@ -6,6 +6,7 @@ import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 
 // mybatis가 구현해주는 것
+/*
 public class JdbcNoticeDao implements NoticeDao {
 
 	@Override
@@ -54,3 +55,4 @@ public class JdbcNoticeDao implements NoticeDao {
 	}
 
 }
+*/

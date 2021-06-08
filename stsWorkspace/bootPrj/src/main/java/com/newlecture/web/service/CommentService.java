@@ -7,7 +7,7 @@ import com.newlecture.web.entity.NoticeView;
 // A 인터페이스
 // A를 구현한 구현체의 이름은? Aimp 클래스
 // 컨테이너에 담는 것은 구현체를 담아야 함
-public interface NoticeService {
+public interface CommentService {
 	
 	Notice get(int id);
 	List<Notice> getList();
