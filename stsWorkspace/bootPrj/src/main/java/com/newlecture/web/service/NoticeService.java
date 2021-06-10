@@ -11,10 +11,14 @@ public interface NoticeService {
 	
 	Notice get(int id);
 	List<Notice> getList();
-	List<Notice> getList(int page, String field, String query);
+	List<Notice> getList(int page); // 페이징
+	List<Notice> getList(int page, String field, String query); // 검색
+	// List<Notice> getList(int page, String field, String query, String colOrder, boolean isAsc); // 정렬 / asc: 기준 정렬에 대한 방식
 	
 	int insert(Notice notice);
 	int delete(int id);
+	// 자세한 페이지 조회 -> 조회수 Up
 	int hitUp(int id); // sql 모르는 사람도 이애할 수 있을 만큼 직관적인 명령어 사용하기
-	int likeUp(int id);
+	int likeToggle(int id); // 좋아요 클릭 -> 좋아요 토글, dao를 이용해 toggle을 구현해야 함
+	int update(Notice notice);
 }

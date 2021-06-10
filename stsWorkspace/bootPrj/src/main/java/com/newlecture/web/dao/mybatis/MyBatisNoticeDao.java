@@ -31,18 +31,24 @@ public class MyBatisNoticeDao implements NoticeDao {
 
 	@Override
 	public List<Notice> getList() {
-		return getList(1, "title", "");
+		return getList(0, 10, "title", ""); // 빈 공백을 null로 바꿔도 됨
 	}
 
 	@Override
-	public List<Notice> getList(int page) {
-		return getList(page, "title", "");
+	public List<Notice> getList(int offset, int size) {
+		return getList(offset, size, "title", "");
 	}
 
 	@Override
-	public List<Notice> getList(int page, String field, String query) {
+	public List<Notice> getList(int offset, int size, String field, String query) {
 		
-		return mapper.getList(page, field, query);
+		return mapper.getList(offset, size, field, query);
+	}
+	
+	@Override
+	public List<Notice> getListIn(int[] ids) {
+
+		return mapper.getListIn(ids);
 	}
 	
 	@Override

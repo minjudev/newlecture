@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.newlecture.web.dao.NoticeDao;
 import com.newlecture.web.entity.Notice;
 import com.newlecture.web.service.NoticeService;
 
@@ -36,7 +37,7 @@ public class NoticeController {
 	// @ResponseBody // 컨트롤러 안에서 문서가 아닌 데이터를 바로 출력하게 함
 	public String list(Model model) { // 모델을 얻는 작업
 		
-		List<Notice> list = service.getList(1, "title", "");
+		List<Notice> list = service.getList(1, null, null);
 		
 		/*
 		List<Notice> list = new ArrayList<>();
@@ -102,7 +103,7 @@ public class NoticeController {
 	
 	// @RequestMapping(value = "reg", method = RequestMethod.GET) 
 	@GetMapping("reg") // url에서 {} 안에는 아무 값이 올 수 있지만 id라는 값을 뽑아쓰겠다는 의미
-	@ResponseBody
+	// @ResponseBody
 	public ModelAndView reg(
 			@RequestParam(name = "f", defaultValue = "title") String field, // parameter로 f가 왔을 때 field라는 변수로 이름 변경
 			@RequestParam(defaultValue = "0") Integer x, // null, 빈 공백이 오면 기본값은 0, String을 Integer로 바꿔줌
@@ -145,26 +146,47 @@ public class NoticeController {
 		// return String.format("x: %d, y: %d, result: %d, field: %s, test cookie: %s", x, y, x+y, field, test);
 	}
 	
-	 @PostMapping("reg") 
-	 public String reg(
-			 String title, 
-			 String content) {
+	@PostMapping("reg") 
+	public String reg(
+		 String title, 
+		 String content) {
 		 
-		 Notice notice = new Notice();
-		 notice.setTitle(title);
-		 notice.setContent(content);
-		 notice.setWriterId("newlec");
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		notice.setWriterId("newlec");
 		 
-		 service.insert(notice);
+		service.insert(notice);
 		 
-		 return "redirect:list"; // list로만 넘어가면 돼서 리디렉션 쓰기 
+		return "redirect:list"; // list로만 넘어가면 돼서 리디렉션 쓰기 
 		 						 // 포워딩이 아닌 리디렉션(뷰 페이지가 아닌 list 컨트롤러로 이동)
-	 }
-	 
+	}
 	
-	@RequestMapping("edit") // get, post 요청 둘 다 필요
-	public String edit() {
-		return "admin notice edit";
+	@GetMapping("edit") 
+	public String edit(Model model, int id) {
+		
+		Notice notice = service.get(id);
+		model.addAttribute("notice", notice);
+		
+		// int[] ids = {23, 40, 45};
+		// List<Notice> list = dao.getListIn(new int[] {23, 40, 45});
+		// model.addAttribute(list);
+		
+		return "admin.notice.edit";
+	}
+	
+	@PostMapping("edit")
+	public String edit(Notice notice) { // notice: 새로 받아온 title, content가 포함된 notice
+		
+		// origin은 edit하려고 하는 속성을 포함한 notice의 속성을 다 가지고 있음
+		/*
+		Notice origin = dao.get(notice.getId()); // edit 하려고 하는 notice를 다 가져오기
+		origin.setTitle(notice.getTitle());
+		origin.setContent(notice.getContent());
+		*/
+		service.update(notice);
+		
+		return "redirect:detail?id="+notice.getId();
 	}
 	
 	@RequestMapping("del") 

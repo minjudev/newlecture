@@ -26,8 +26,9 @@ public interface NoticeDao {
 	// 오버로드 함수도 정상 작동되게 하려면 구현체를 직접 구현해야 함
 	// @Select("select * from Notice")
 	List<Notice> getList(); // 필터링, 정렬, 페이징, 집계
-	List<Notice> getList(int page);
-	List<Notice> getList(int page, String field, String query);
+	List<Notice> getList(int offset, int size);
+	List<Notice> getList(int offset, int size, String field, String query);
+	List<Notice> getListIn(int[] ids);
 	List<NoticeView> getViewList(int page, String field, String query);
 	
 	int getCount(String field, String query);
